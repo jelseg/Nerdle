@@ -1,5 +1,5 @@
 Wireframes:
-* Launch screen
+* Splash screen (info)
 * navigation screen
 * Nerdle
 * Highscorelijst
