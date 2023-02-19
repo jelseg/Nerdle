@@ -1,0 +1,7 @@
+Wireframes:
+* Launch screen
+* navigation screen
+* Nerdle
+* Highscorelijst
+* settings
+* user aanmaken
