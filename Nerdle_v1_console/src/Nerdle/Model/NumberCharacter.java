@@ -18,6 +18,17 @@ public class NumberCharacter extends EquationCharacter{
         return left*10+value;
     }
 
+    @Override
+    public boolean equals(EquationCharacter other) {
+        if(other instanceof NumberCharacter){
+            return ((NumberCharacter) other).getValue() == this.value;
+        }
+        else {
+            return false;
+        }
+    }
+
+
     //getters and setters
 
     public int getValue() {

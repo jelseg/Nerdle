@@ -26,8 +26,47 @@ public class Combination {
     // sets the colors of the characters according (same as other -> green, in other -> purple, else Black)
     // return true if all correct
     public boolean compare(Combination other){
-        // placeholder
-        return false;
+
+        // to make sure if your combination has a duplicate character and other has this character only once
+        // the color will be set to purple for only one
+        boolean[] otherUsed = new boolean[COMBINATION_SIZE];
+
+        boolean allCorrect = true;
+
+        EquationCharacter[] otherChars = other.getCharacters();
+
+        if(otherChars.length != COMBINATION_SIZE || this.characters.length != COMBINATION_SIZE){
+            throw new RuntimeException("there has been a mismatch between the size of the combinations and the " +
+                    "parameter COMBINATION_SIZE. Has the Combination size changed without rebuilding all combinations and answers?");
+                    // should make a new exception for this
+        }
+
+        for (int i = 0; i < COMBINATION_SIZE; i++) {
+
+            //is correct:
+            if(this.characters[i].equals(otherChars[i])){
+                this.characters[i].setColor(EquationCharacter.CombinationColor.GREEN);
+                otherUsed[i] = true;
+            }
+            else {
+                allCorrect = false;
+                //chack to make purple:
+                boolean foundOne = false;
+                for(int j = 0; j < COMBINATION_SIZE && !foundOne; j++ ){
+                    if(this.characters[i].equals(otherChars[j]) && !otherUsed[j] && !this.characters[j].equals(otherChars[j])){
+                        this.characters[i].setColor(EquationCharacter.CombinationColor.PURPLE);
+                        otherUsed[j] = true;
+                        foundOne = true;
+                    }
+                }
+                //else should be black
+                if(!foundOne){
+                    this.characters[i].setColor(EquationCharacter.CombinationColor.BLACK);
+                }
+            }
+        }
+
+        return allCorrect;
     }
 
     public boolean addToEnd(EquationCharacter c){

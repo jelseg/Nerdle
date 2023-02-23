@@ -32,6 +32,16 @@ public class OperationCharacter extends EquationCharacter{
     }
 
     @Override
+    public boolean equals(EquationCharacter other) {
+        if(other instanceof OperationCharacter){
+            return ((OperationCharacter) other).operation == this.operation;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
     public String toString() {
         switch(operation){
             case DIVIDE: return "/";

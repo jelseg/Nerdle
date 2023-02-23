@@ -27,6 +27,14 @@ public class EquationCharacter {
         this.color = other.getColor();
     }
 
+    public boolean equals(EquationCharacter other){
+        // TBD: empty characters should never be equal?
+        return false;
+    }
+
+
+    //getters and setters
+
     public CombinationColor getColor() {
         return color;
     }
@@ -37,7 +45,7 @@ public class EquationCharacter {
 
     @Override
     public String toString(){
-        return ".";
+        return " ";
     }
 
     public EquationCharacter copy(){
