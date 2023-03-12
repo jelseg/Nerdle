@@ -1,0 +1,43 @@
+.root {
+    -fx-background-color: khaki;
+    -fx-font-size: 20px;
+    bright-green: rgb(39, 203, 66);
+}
+
+.num-pad {
+    -fx-padding: 15px;
+    -fx-hgap: 16px;
+    -fx-vgap: 8px;
+}
+
+.num-button {
+    -fx-background-color: darkgrey, white;
+    -fx-background-radius: 50%;
+    -fx-background-insets: 0, 1, 2;
+    -fx-font-family: "Helvetica";
+    -fx-text-fill: black;
+}
+
+.num-button:hover {
+    -fx-background-color: black, plum;
+    -fx-text-fill: white;
+}
+
+#call-button {
+    -fx-background-color: black, bright-green;
+    -fx-background-radius: 2;
+    -fx-background-insets: 0, 1;
+    -fx-font-family: "Helvetica";
+    -fx-text-fill: white;
+}
+
+#call-button:hover {
+    -fx-background-color: bright-green, plum;
+    -fx-text-fill: black;
+}
+
+.tool-tip {
+    -fx-background-radius: 8px;
+    -fx-background-color: linear-gradient(greenyellow, limegreen);
+    /* De gradient doet het niet? */
+}

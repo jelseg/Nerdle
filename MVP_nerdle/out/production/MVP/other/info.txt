@@ -1,0 +1,2 @@
+Information about the application stored in the info.txt file can be shown here.
+Describe the purpose of this application.

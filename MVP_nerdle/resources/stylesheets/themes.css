@@ -1,0 +1,36 @@
+* {
+    -fx-font-family: monospace;
+}
+
+.light {
+    -fx-background-color: ivory;
+    -fx-text-fill: navy;
+    -fx-border-color: darkslategrey;
+}
+.dark {
+    -fx-background-color: slategrey;
+    -fx-text-fill: white;
+    -fx-border-color: navy;
+}
+.high-contrast {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+.root {
+    -fx-padding: 15px;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-insets: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: navy;
+}
+
+.radio-button {
+    -fx-padding: 8px;
+}
+
+.button-clicked {
+    -fx-text-fill: red;
+}

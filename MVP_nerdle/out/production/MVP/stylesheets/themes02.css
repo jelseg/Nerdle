@@ -1,0 +1,33 @@
+* {
+    -fx-font-family: monospace;
+}
+
+.light {
+    -fx-background-color: ivory;
+    -fx-text-fill: navy;
+}
+.dark {
+    -fx-background-color: slategrey;
+    -fx-text-fill: white;
+}
+.high-contrast {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.root {
+    -fx-padding: 15px;
+    -fx-border-width: 2px;
+    -fx-border-insets: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-color: lightgrey;
+
+}
+
+.radio-button {
+    -fx-padding: 8px;
+}
+
+.button-clicked {
+    -fx-text-fill: red;
+}
