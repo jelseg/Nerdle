@@ -19,14 +19,14 @@ public class UISettings {
     private Path AboutImagePath = Paths.get("resources"+FILE_SEPARATOR+"images"+FILE_SEPARATOR+"Nerdle_logo_backdrop.png");
     private Path applicationIconPath = Paths.get("resources"+FILE_SEPARATOR+"images"+FILE_SEPARATOR+"Nerdle_logo_backdrop.png");
     private Path startScreenImagePath = Paths.get("resources"+FILE_SEPARATOR+"images"+FILE_SEPARATOR+"Nerdle_logo_backdrop.png");
-    private Path infoTextPath = Paths.get("resources"+FILE_SEPARATOR+"other"+FILE_SEPARATOR+"info.txt");
+    private Path rulesTextPath = Paths.get("resources"+FILE_SEPARATOR+"other"+FILE_SEPARATOR+"rules.txt");
 
     public UISettings() {
         this.resX= (int) Screen.getPrimary().getVisualBounds().getWidth();
         this.resY = (int) Screen.getPrimary().getVisualBounds().getHeight();
         this.insetsMargin = this.getLowestRes()/100;
         this.homeDir = System.getProperties().getProperty("user.dir");
-        this.ApplicationName = "MVP";
+        this.ApplicationName = "Nerdle";
     };
 
     public int getResX () {return this.resX;}
@@ -51,7 +51,7 @@ public class UISettings {
 
     public Path getAboutImagePath () {return this.AboutImagePath;}
 
-    public Path getInfoTextPath () {return this.infoTextPath;}
+    public Path getRulesTextPath() {return this.rulesTextPath;}
 
     public String getApplicationName () {return this.ApplicationName;}
 

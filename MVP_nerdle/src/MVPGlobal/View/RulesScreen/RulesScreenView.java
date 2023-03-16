@@ -1,4 +1,4 @@
-package MVPGlobal.View.InfoScreen;
+package MVPGlobal.View.RulesScreen;
 
 import MVPGlobal.View.UISettings;
 import javafx.geometry.Insets;
@@ -8,13 +8,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 
-public class InfoScreenView extends BorderPane{
+public class RulesScreenView extends BorderPane{
 
     private UISettings uiSettings;
     private TextArea InfoText;
     private Button okButton;
 
-    public InfoScreenView(UISettings uiSettings) {
+    public RulesScreenView(UISettings uiSettings) {
         this.uiSettings = uiSettings;
         initialiseNodes();
         layoutNodes();

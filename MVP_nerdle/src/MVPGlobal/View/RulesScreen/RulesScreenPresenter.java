@@ -1,4 +1,4 @@
-package MVPGlobal.View.InfoScreen;
+package MVPGlobal.View.RulesScreen;
 
 import MVPGlobal.Model.MVPModel;
 import MVPGlobal.View.UISettings;
@@ -7,13 +7,13 @@ import javafx.event.EventHandler;
 import java.io.*;
 
 
-public class InfoScreenPresenter {
+public class RulesScreenPresenter {
 
     private MVPModel model;
-    private InfoScreenView view;
+    private RulesScreenView view;
     private UISettings uiSettings;
 
-    public InfoScreenPresenter(MVPModel model, InfoScreenView view, UISettings uiSettings) {
+    public RulesScreenPresenter(MVPModel model, RulesScreenView view, UISettings uiSettings) {
         this.model = model;
         this.view = view;
         this.uiSettings = uiSettings;
@@ -28,7 +28,7 @@ public class InfoScreenPresenter {
 
     private String ReadInfoFromFile() {
         String infoTextInFile ="";
-        try (BufferedReader reader = new BufferedReader(new FileReader(uiSettings.getInfoTextPath().toString()));){
+        try (BufferedReader reader = new BufferedReader(new FileReader(uiSettings.getRulesTextPath().toString()));){
             String line = "";
             String testString;
             while ((line = reader.readLine())!= null){

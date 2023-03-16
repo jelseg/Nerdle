@@ -2,7 +2,7 @@ package MVPGlobal.View.MainScreen;
 
 import MVPGlobal.Model.*;
 import MVPGlobal.View.AboutScreen.*;
-import MVPGlobal.View.InfoScreen.*;
+import MVPGlobal.View.RulesScreen.*;
 import MVPGlobal.View.SettingsScreen.*;
 import MVPGlobal.View.UISettings;
 import javafx.event.*;
@@ -187,12 +187,12 @@ public class MainScreenPresenter {
         view.getInfoItem().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                InfoScreenView infoScreenView = new InfoScreenView(uiSettings);
-                InfoScreenPresenter infoScreenPresenter = new InfoScreenPresenter(model, infoScreenView, uiSettings);
+                RulesScreenView rulesScreenView = new RulesScreenView(uiSettings);
+                RulesScreenPresenter rulesScreenPresenter = new RulesScreenPresenter(model, rulesScreenView, uiSettings);
                 Stage infoScreenStage = new Stage();
                 infoScreenStage.initOwner(view.getScene().getWindow());
                 infoScreenStage.initModality(Modality.APPLICATION_MODAL);
-                Scene scene = new Scene(infoScreenView);
+                Scene scene = new Scene(rulesScreenView);
                 infoScreenStage.setScene(scene);
                 infoScreenStage.setTitle(uiSettings.getApplicationName()+ " - Info");
                 infoScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
@@ -206,12 +206,12 @@ public class MainScreenPresenter {
                     }
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
-                infoScreenView.getScene().getWindow().setHeight(uiSettings.getResY()/2);
-                infoScreenView.getScene().getWindow().setWidth(uiSettings.getResX()/2);
+                rulesScreenView.getScene().getWindow().setHeight(uiSettings.getResY()/2);
+                rulesScreenView.getScene().getWindow().setWidth(uiSettings.getResX()/2);
                 if (uiSettings.styleSheetAvailable()){
-                    infoScreenView.getScene().getStylesheets().removeAll();
+                    rulesScreenView.getScene().getStylesheets().removeAll();
                     try {
-                        infoScreenView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                        rulesScreenView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
                     }
                     catch (MalformedURLException ex) {
                         // do nothing, if toURL-conversion fails, program can continue
