@@ -6,14 +6,16 @@ import java.util.List;
 
 public class Combination {
 
-    protected static int COMBINATION_SIZE = 8;
+    //protected static int COMBINATION_SIZE = 8;
 
+    protected Difficulty difficulty;
     protected EquationCharacter[] characters;
     private int currentPos;
 
-    public Combination(){
-        characters = new EquationCharacter[COMBINATION_SIZE];
-        for (int i =0; i < COMBINATION_SIZE; i++){
+    public Combination(Difficulty difficulty){
+        this.difficulty = difficulty;
+        characters = new EquationCharacter[difficulty.getComboLength()];
+        for (int i =0; i < difficulty.getComboLength(); i++){
             characters[i] = new EquationCharacter();
         }
         currentPos = 0;
@@ -141,23 +143,27 @@ public class Combination {
 
     // sets the colors of the characters according (same as other -> green, in other -> purple, else Black)
     // return true if all correct
-    public boolean compare(Combination other){
+    public boolean compare(Combination other) throws NerdleException{
+
+        if (other.getCombinationLength() != getCombinationLength()){
+            throw new NerdleException("A problem occurred when comparing combinations. The sizes were not equal.");
+        }
 
         // to make sure if your combination has a duplicate character and other has this character only once
         // the color will be set to purple for only one
-        boolean[] otherUsed = new boolean[COMBINATION_SIZE];
+        boolean[] otherUsed = new boolean[Difficulty.NORMAL.getComboLength()];
 
         boolean allCorrect = true;
 
         EquationCharacter[] otherChars = other.getCharacters();
 
-        if(otherChars.length != COMBINATION_SIZE || this.characters.length != COMBINATION_SIZE){
+        if(otherChars.length != difficulty.getComboLength() || this.characters.length != difficulty.getComboLength()){
             throw new RuntimeException("there has been a mismatch between the size of the combinations and the " +
                     "parameter COMBINATION_SIZE. Has the Combination size changed without rebuilding all combinations and answers?");
                     // should make a new exception for this
         }
 
-        for (int i = 0; i < COMBINATION_SIZE; i++) {
+        for (int i = 0; i < difficulty.getComboLength(); i++) {
 
             //is correct:
             if(this.characters[i].equals(otherChars[i])){
@@ -168,7 +174,7 @@ public class Combination {
                 allCorrect = false;
                 //chack to make purple:
                 boolean foundOne = false;
-                for(int j = 0; j < COMBINATION_SIZE && !foundOne; j++ ){
+                for(int j = 0; j < difficulty.getComboLength() && !foundOne; j++ ){
                     if(this.characters[i].equals(otherChars[j]) && !otherUsed[j] && !this.characters[j].equals(otherChars[j])){
                         this.characters[i].setColor(EquationCharacter.CombinationColor.PURPLE);
                         otherUsed[j] = true;
@@ -186,7 +192,7 @@ public class Combination {
     }
 
     public boolean addToEnd(EquationCharacter c){
-        if ( currentPos < COMBINATION_SIZE) {
+        if ( currentPos < difficulty.getComboLength()) {
             characters[currentPos] = c;
             currentPos++;
             return true;
@@ -252,5 +258,17 @@ public class Combination {
             s2.append(c.getColor());
         }
         return s1.append("\n").append(s2).toString();
+    }
+
+    public String getCombinationString(){
+        StringBuilder s1 = new StringBuilder();
+        for(EquationCharacter c : characters){
+            s1.append(c.toString());
+        }
+        return s1.toString();
+    }
+
+    public int getCombinationLength(){
+        return difficulty.getComboLength();
     }
 }

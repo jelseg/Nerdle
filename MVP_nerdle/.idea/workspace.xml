@@ -2,70 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb07cd03-32f2-4bf1-b3d0-388c8750d2fb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Nerdle/Model/AnswerGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/other/answers/allAnswers_8.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Nerdle/Model/Difficulty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Nerdle/Model/NerdleException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/MVPMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/Model/MVPModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/AboutScreen/AboutScreenPresenter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/AboutScreen/AboutScreenPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/AboutScreen/AboutScreenView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/MainScreen/MainScreenPresenter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/MainScreen/MainScreenPresenter$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/MainScreen/MainScreenPresenter$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/MainScreen/MainScreenPresenter$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/MainScreen/MainScreenPresenter$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/MainScreen/MainScreenPresenter$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/MainScreen/MainScreenPresenter$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/MainScreen/MainScreenPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/MainScreen/MainScreenView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/RulesScreen/RulesScreenPresenter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/RulesScreen/RulesScreenPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/RulesScreen/RulesScreenView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/SettingsScreen/SettingsPresenter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/SettingsScreen/SettingsPresenter$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/SettingsScreen/SettingsPresenter$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/SettingsScreen/SettingsPresenter$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/SettingsScreen/SettingsPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/SettingsScreen/SettingsView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/StartScreen/StartScreenPresenter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/StartScreen/StartScreenPresenter$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/StartScreen/StartScreenPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/StartScreen/StartScreenTransition.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/StartScreen/StartScreenView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/MVPGlobal/View/UISettings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MVP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MVP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/Answer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/Answer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/AnswerGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/AnswerGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/Combination.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/Combination.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/EquationCharacter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/EquationCharacter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/Nerdle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/Nerdle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/NumberCharacter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/OperationCharacter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/OperationCharacter$Operation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/OperationCharacter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/Overzicht.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MVP/Nerdle/Model/Overzicht.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MVP/TestNerdle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/MVPMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/MVPMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/Model/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/Answer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/Model/Combination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/Combination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/Model/EquationCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/EquationCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/Model/MVPModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/MVPModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/Model/Nerdle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/Nerdle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/Model/NumberCharacter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/Model/OperationCharacter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/Model/Overzicht.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/Overzicht.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/TestNerdle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/TestNerdle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/AboutScreen/AboutScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/AboutScreen/AboutScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/AboutScreen/AboutScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/AboutScreen/AboutScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/MainScreen/MainScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/MainScreen/MainScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/MainScreen/MainScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/MainScreen/MainScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/RulesScreen/RulesScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/RulesScreen/RulesScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/RulesScreen/RulesScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/RulesScreen/RulesScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/SettingsScreen/SettingsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/SettingsScreen/SettingsPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/SettingsScreen/SettingsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/SettingsScreen/SettingsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/StartScreen/StartScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/StartScreen/StartScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/StartScreen/StartScreenTransition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/StartScreen/StartScreenTransition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/StartScreen/StartScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/StartScreen/StartScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MVPGlobal/View/UISettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/View/UISettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Nerdle/Model/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Nerdle/Model/AnswerGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/AnswerGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Nerdle/Model/Combination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/Combination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Nerdle/Model/Nerdle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nerdle/Model/Nerdle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +27,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -107,14 +57,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/documenten/kdg/java1/Nerdle/MVP_nerdle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Java/jdk-17.0.4.1/javafx-sdk-19.0.2.1/lib&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\OOPROG\MVP\resources" />
@@ -205,7 +158,7 @@
     <configuration name="MVPMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Nerdle.MVPMain" />
       <module name="MVP" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;D:\Program Files\Java\javafx-sdk-19.0.2.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\jdk-17.0.4.1\javafx-sdk-19.0.2.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Nerdle.*" />
@@ -343,6 +296,9 @@
       <workItem from="1678646461212" duration="6822000" />
       <workItem from="1678991710548" duration="2715000" />
       <workItem from="1679142643976" duration="7853000" />
+      <workItem from="1679150705463" duration="28000" />
+      <workItem from="1679235803860" duration="1045000" />
+      <workItem from="1680420017310" duration="10576000" />
     </task>
     <servers />
   </component>
@@ -373,12 +329,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Nerdle/Model/Combination.java</url>
-          <line>137</line>
+          <line>139</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Nerdle/Model/Combination.java</url>
-          <line>107</line>
+          <line>109</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
