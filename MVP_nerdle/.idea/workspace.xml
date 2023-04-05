@@ -74,10 +74,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+<<<<<<< Updated upstream
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/jaspe/OneDrive/Bureaublad/java fx/Nerdle/MVP_nerdle/resources/stylesheets"
+=======
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/jaspe/OneDrive/Bureaublad/Relationele db 2"
+>>>>>>> Stashed changes
   }
 }]]></component>
   <component name="RecentsManager">
@@ -310,9 +315,13 @@
       <workItem from="1577714577013" duration="112000" />
       <workItem from="1678646461212" duration="6822000" />
       <workItem from="1678991710548" duration="2715000" />
+<<<<<<< Updated upstream
       <workItem from="1679142643976" duration="7853000" />
       <workItem from="1680202565985" duration="2205000" />
       <workItem from="1680706581517" duration="6997000" />
+=======
+      <workItem from="1678996900607" duration="26000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
