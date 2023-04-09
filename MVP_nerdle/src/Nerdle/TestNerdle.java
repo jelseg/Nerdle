@@ -1,7 +1,9 @@
 package Nerdle;
 
 import Nerdle.Model.Combination;
+import Nerdle.Model.Difficulty;
 import Nerdle.Model.Nerdle;
+import Nerdle.Model.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,8 +12,19 @@ public class TestNerdle {
 
     public static void main(String[] args) {
 
-        Nerdle spel = new Nerdle();
+        //System.out.println("your current score is: " + user.getScore(Difficulty.NORMAL));
+        //List<User> allUsers = User.getAllUsers();
+        User user = new User("yelle");
+
+        System.out.println("hello " + user.getName());
+        System.out.println("your score up till now is: " + user.getScore());
+
+        Nerdle spel = new Nerdle(user,Difficulty.NORMAL);
         Scanner scanner = new Scanner(System.in);
+
+        if(spel.getCurrentGuessNumber() != 0) {
+            printGuesses(spel);
+        }
 
         while (! spel.isOver()){
             System.out.println("next guess?");
@@ -20,7 +33,6 @@ public class TestNerdle {
             spel.enterCurrentGuess();
 
             printGuesses(spel);
-
             //needed in case guess is illegal, in real application this should be omitted (current guess should still show)
             spel.emptyCurrentGuess();
 

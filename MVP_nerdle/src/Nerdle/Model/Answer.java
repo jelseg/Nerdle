@@ -20,7 +20,7 @@ public class Answer extends Combination{
             File.separator + "currentAnswer_%s.txt";
     //date;id;answer
     private static final String ANSWER_FORMAT = "%s;%012d;%s";
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyyMMdd");
+    //private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyyMMdd");
 
     private int id;
 
@@ -112,7 +112,7 @@ public class Answer extends Combination{
                 throw new NerdleException("The current answer file is not properly formatted.");
             }
 
-            String todayStr = LocalDate.now().format(DATE_FORMAT);
+            String todayStr = LocalDate.now().format(Nerdle.DATE_FORMAT);
 
             if (todayStr.equals(splittedLine[0])) {
 
@@ -148,11 +148,14 @@ public class Answer extends Combination{
         File answerFile = new File(String.format(ANSWER_FILE,difficulty));
 
         try(Formatter formater = new Formatter(answerFile)){
-            formater.format(ANSWER_FORMAT,LocalDate.now().format(DATE_FORMAT),id,conbinationStr);
+            formater.format(ANSWER_FORMAT,LocalDate.now().format(Nerdle.DATE_FORMAT),id,conbinationStr);
         }
         catch (IOException ioe){
-            throw new NerdleException("A problem occurred trying to save todays answer.",ioe);
+            throw new NerdleException("A problem occurred trying to save today's answer.",ioe);
         }
     }
 
+    public int getId() {
+        return id;
+    }
 }
