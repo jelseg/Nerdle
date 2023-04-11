@@ -2,6 +2,8 @@ package Nerdle.View.StartScreen;
 
 import Nerdle.Model.*;
 import Nerdle.View.*;
+import Nerdle.View.MainMenuScreen.MainMenuScreenPresenter;
+import Nerdle.View.MainMenuScreen.MainMenuScreenView;
 import Nerdle.View.MainScreen.MainScreenPresenter;
 import Nerdle.View.MainScreen.MainScreenView;
 import javafx.event.*;
@@ -19,31 +21,34 @@ public class StartScreenPresenter {
         this.model = model;
         this.view = view;
         this.uiSettings = uiSettings;
+        addEventHandlers();
         updateView();
-        EventHandlers();
+
     }
 
     private void updateView() {
     }
 
-    private void EventHandlers() {
+    private void addEventHandlers() {
         view.getTransition().setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                MainScreenView msView = new MainScreenView(uiSettings);
-                MainScreenPresenter msPresenter = new MainScreenPresenter(model, msView, uiSettings);
-                view.getScene().setRoot(msView);
+
+                MainMenuScreenView mmSv=new MainMenuScreenView();
+                view.getScene().setRoot(mmSv);
+                MainMenuScreenPresenter mmSp=new MainMenuScreenPresenter(model, mmSv,uiSettings);
                 try {
-                    msView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                    mmSv.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
                 } catch (MalformedURLException ex) {
                     // // do nothing, if toURL-conversion fails, program can continue
                 }
-                msView.getScene().getWindow().sizeToScene();
-                msView.getScene().getWindow().setX(uiSettings.getResX()/20);
-                msView.getScene().getWindow().setY(uiSettings.getResY()/20);
-                msView.getScene().getWindow().setHeight(9 * uiSettings.getResY()/10);
-                msView.getScene().getWindow().setWidth(9 * uiSettings.getResX()/10);
-                msPresenter.windowsHandler();
+//                mmSv.getScene().getWindow().sizeToScene();
+//                mmSv.getScene().getWindow().setX(uiSettings.getResX()/20);
+//                mmSv.getScene().getWindow().setY(uiSettings.getResY()/20);
+//                mmSv.getScene().getWindow().setHeight(5 * uiSettings.getResY()/10);
+//                mmSv.getScene().getWindow().setWidth(5 * uiSettings.getResX()/10);
+//                mmSp.windowsHandler();
+                updateView();
             }
         });
     }
