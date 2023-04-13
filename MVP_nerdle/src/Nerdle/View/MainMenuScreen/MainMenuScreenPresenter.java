@@ -5,6 +5,8 @@ import Nerdle.View.AboutScreen.AboutScreenPresenter;
 import Nerdle.View.AboutScreen.AboutScreenView;
 import Nerdle.View.MainScreen.MainScreenPresenter;
 import Nerdle.View.MainScreen.MainScreenView;
+import Nerdle.View.NewUserScreen.NewUserScreenPresenter;
+import Nerdle.View.NewUserScreen.NewUserScreenView;
 import Nerdle.View.UISettings;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -32,28 +34,46 @@ public class MainMenuScreenPresenter {
         EventHandlers();
     }
 
-    private void EventHandlers() {
-        view.getNewGame().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                MainScreenView mainScreenView=new MainScreenView(uiSettings);
-                MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(model,mainScreenView,uiSettings);
-                view.getScene().setRoot(mainScreenView);
-                try {
-                    mainScreenView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
-                } catch (MalformedURLException ex) {
-                    // // do nothing, if toURL-conversion fails, program can continue
-                }
-                mainScreenView.getScene().getWindow().sizeToScene();
-                updateView();
 
-//                msView.getScene().getWindow().setX(uiSettings.getResX() / 20);
-//                msView.getScene().getWindow().setY(uiSettings.getResY() / 20);
-//                msView.getScene().getWindow().setHeight(9 * uiSettings.getResY() / 10);
-//                msView.getScene().getWindow().setWidth(9 * uiSettings.getResX() / 10);
-                mainScreenPresenter.windowsHandler();
+
+    private void EventHandlers() {
+
+        view.getNewGame().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                NewUserScreenView newUserScreenView=new NewUserScreenView();
+                NewUserScreenPresenter newUserScreenPresenter=new NewUserScreenPresenter(model,newUserScreenView,uiSettings);
+                Stage newUserStage = new Stage();
+                newUserStage.initOwner(view.getScene().getWindow());
+                newUserStage.initModality(Modality.APPLICATION_MODAL);
+                newUserStage.setScene(new Scene(newUserScreenView));
+                newUserStage.setX(view.getScene().getWindow().getX() + 100);
+                newUserStage.setY(view.getScene().getWindow().getY() + 100);
+                newUserStage.showAndWait();
             }
         });
+
+//        view.getNewGame().setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent mouseEvent) {
+//                MainScreenView mainScreenView=new MainScreenView(uiSettings);
+//                MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(model,mainScreenView,uiSettings);
+//                view.getScene().setRoot(mainScreenView);
+//                try {
+//                    mainScreenView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+//                } catch (MalformedURLException ex) {
+//                    // // do nothing, if toURL-conversion fails, program can continue
+//                }
+//                mainScreenView.getScene().getWindow().sizeToScene();
+//                updateView();
+//
+////                msView.getScene().getWindow().setX(uiSettings.getResX() / 20);
+////                msView.getScene().getWindow().setY(uiSettings.getResY() / 20);
+////                msView.getScene().getWindow().setHeight(9 * uiSettings.getResY() / 10);
+////                msView.getScene().getWindow().setWidth(9 * uiSettings.getResX() / 10);
+//                mainScreenPresenter.windowsHandler();
+//            }
+//        });
 
         view.getAbout().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -70,6 +90,7 @@ public class MainMenuScreenPresenter {
 //                aboutStage.showAndWait();
             }
         });
+
     }
     private void updateView() {
     }
