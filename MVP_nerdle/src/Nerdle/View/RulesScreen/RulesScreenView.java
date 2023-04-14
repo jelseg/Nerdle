@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 public class RulesScreenView extends BorderPane{
 
     private UISettings uiSettings;
-    private TextArea InfoText;
+    private TextArea rulesText;
     private Button okButton;
 
     public RulesScreenView(UISettings uiSettings) {
@@ -21,18 +21,18 @@ public class RulesScreenView extends BorderPane{
     }
 
     private void initialiseNodes() {
-        InfoText = new TextArea("test");
+        rulesText = new TextArea("test");
         okButton = new Button("OK");
         okButton.setPrefWidth(60);
     }
 
     private void layoutNodes() {
-        setCenter(InfoText);
-        InfoText.setPrefWidth(Double.MAX_VALUE);
-        InfoText.setPrefHeight(Double.MAX_VALUE);
-        InfoText.setWrapText(true);
-        InfoText.setFont(Font.font("Arial", 12));
-        InfoText.setEditable(false);
+        setCenter(rulesText);
+        rulesText.setPrefWidth(Double.MAX_VALUE);
+        rulesText.setPrefHeight(Double.MAX_VALUE);
+        rulesText.setWrapText(true);
+        rulesText.setFont(Font.font("Arial", 12));
+        rulesText.setEditable(false);
         setPadding(new Insets(uiSettings.getInsetsMargin()));
         BorderPane.setAlignment(okButton, Pos.CENTER_RIGHT);
         BorderPane.setMargin(okButton, new Insets(uiSettings.getInsetsMargin(), 0, 0, 0));
@@ -41,7 +41,7 @@ public class RulesScreenView extends BorderPane{
         setPrefHeight(uiSettings.getLowestRes() / 4);
     }
 
-    TextArea getInfoText () {return InfoText;}
+    TextArea getRulesText() {return rulesText;}
 
     Button getBtnOk() {
         return okButton;

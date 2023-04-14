@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
 
+import java.net.MalformedURLException;
+
 public class NewUserScreenPresenter{
 
     private MVPModel model;
@@ -29,7 +31,13 @@ public class NewUserScreenPresenter{
                 MainScreenView mainScreenView=new MainScreenView(uiSettings);
                 MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(model,mainScreenView,uiSettings);
                 view.getScene().setRoot(mainScreenView);
+                try {
+                    mainScreenView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                } catch (MalformedURLException ex) {
+                    //do nothing, if toURL-conversion fails, program can continue
+                }
                 mainScreenView.getScene().getWindow().sizeToScene();
+                mainScreenPresenter.windowsHandler();
             }
         });
     }

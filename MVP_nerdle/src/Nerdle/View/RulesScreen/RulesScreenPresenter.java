@@ -17,7 +17,7 @@ public class RulesScreenPresenter {
         this.model = model;
         this.view = view;
         this.uiSettings = uiSettings;
-        view.getInfoText().setText(ReadInfoFromFile());
+        view.getRulesText().setText(ReadInfoFromFile());
         view.getBtnOk().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -27,16 +27,16 @@ public class RulesScreenPresenter {
     }
 
     private String ReadInfoFromFile() {
-        String infoTextInFile ="";
+        String rulesTextInFile ="";
         try (BufferedReader reader = new BufferedReader(new FileReader(uiSettings.getRulesTextPath().toString()));){
             String line = "";
             String testString;
             while ((line = reader.readLine())!= null){
-                infoTextInFile += line + "\n";
+                rulesTextInFile += line + "\n";
             }
         } catch (Exception ex) {
-            // do nothing, if info.txt file can not be read or is incomplete, or ... a standard text will be return
+            // do nothing, if rules.txt file can not be read or is incomplete, or ... a standard text will be return
         }
-        return (infoTextInFile.compareTo("")==0)?"No info available":infoTextInFile;
+        return (rulesTextInFile.compareTo("")==0)?"No info available":rulesTextInFile;
     }
 }
