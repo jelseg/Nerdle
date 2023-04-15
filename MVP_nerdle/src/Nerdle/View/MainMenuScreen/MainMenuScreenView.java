@@ -3,10 +3,8 @@ package Nerdle.View.MainMenuScreen;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 
 import javafx.scene.control.Button;
@@ -14,7 +12,7 @@ import javafx.scene.control.Button;
 public class MainMenuScreenView extends GridPane {
 
     private ImageView nerdleLogo;
-    private Button newGame, highScores, rules,about, settings, close;
+    private Button newGame, highScores, rules,about, settings, exit;
     public MainMenuScreenView(){
         initialiseNodes();
         layoutNodes();
@@ -26,7 +24,7 @@ public class MainMenuScreenView extends GridPane {
         rules=new Button("Rules");
         settings=new Button("Settings");
         about=new Button("About");
-        close=new Button("Close");
+        exit =new Button("Close");
     }
     private void layoutNodes(){
         this.setHgap(10);
@@ -41,7 +39,7 @@ public class MainMenuScreenView extends GridPane {
         rules.setPrefWidth(200);
         settings.setPrefWidth(200);
         about.setPrefWidth(200);
-        close.setPrefWidth(200);
+        exit.setPrefWidth(200);
 
         setHalignment(nerdleLogo,HPos.CENTER);
         setHalignment(newGame,HPos.CENTER);
@@ -49,7 +47,7 @@ public class MainMenuScreenView extends GridPane {
         setHalignment(rules,HPos.CENTER);
         setHalignment(settings,HPos.CENTER);
         setHalignment(about,HPos.CENTER);
-        setHalignment(close,HPos.CENTER);
+        setHalignment(exit,HPos.CENTER);
 
         add(nerdleLogo,0,0);
         add(newGame,0,1);
@@ -57,7 +55,7 @@ public class MainMenuScreenView extends GridPane {
         add(rules,0,3);
         add(settings,0,4);
         add(about,0,5);
-        add(close,0,6);
+        add(exit,0,6);
 
     }
 
@@ -81,7 +79,7 @@ public class MainMenuScreenView extends GridPane {
         return settings;
     }
 
-    public Button getClose() {
-        return close;
+    public Button getExit() {
+        return exit;
     }
 }

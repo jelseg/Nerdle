@@ -10,6 +10,7 @@ import javafx.scene.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -184,22 +185,22 @@ public class MainScreenPresenter {
                 }
                 aboutScreenStage.showAndWait();
             }});
-        view.getInfoItem().setOnAction(new EventHandler<ActionEvent>() {
+        view.getRulesItem().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 RulesScreenView rulesScreenView = new RulesScreenView(uiSettings);
                 RulesScreenPresenter rulesScreenPresenter = new RulesScreenPresenter(model, rulesScreenView, uiSettings);
-                Stage infoScreenStage = new Stage();
-                infoScreenStage.initOwner(view.getScene().getWindow());
-                infoScreenStage.initModality(Modality.APPLICATION_MODAL);
+                Stage rulesScreenStage = new Stage();
+                rulesScreenStage.initOwner(view.getScene().getWindow());
+                rulesScreenStage.initModality(Modality.APPLICATION_MODAL);
                 Scene scene = new Scene(rulesScreenView);
-                infoScreenStage.setScene(scene);
-                infoScreenStage.setTitle(uiSettings.getApplicationName()+ " - Info");
-                infoScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
-                infoScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
+                rulesScreenStage.setScene(scene);
+                rulesScreenStage.setTitle(uiSettings.getApplicationName()+ " - Info");
+                rulesScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
+                rulesScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
-                        infoScreenStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
+                        rulesScreenStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
                     }
                     catch (MalformedURLException ex) {
                         // do nothing, if toURL-conversion fails, program can continue
@@ -217,8 +218,108 @@ public class MainScreenPresenter {
                         // do nothing, if toURL-conversion fails, program can continue
                     }
                 }
-                infoScreenStage.showAndWait();
+                rulesScreenStage.showAndWait();
             }});
+        view.getIv0().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+        view.getIv1().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIv2().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIv3().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIv4().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIv5().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIv6().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIv7().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIv8().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIv9().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+        view.getIvplus().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIvminus().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIvmultiply().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIvdivide().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIvequals().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        view.getIvdelete().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("85");
+            }
+        });
+
+        view.getIventer().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
     }
 
     public void windowsHandler() {
@@ -229,7 +330,7 @@ public class MainScreenPresenter {
 
     private void handleCloseEvent(Event event){
         final Alert stopWindow = new Alert(Alert.AlertType.CONFIRMATION);
-        stopWindow.setHeaderText("You're closing the application.");
+        stopWindow.setHeaderText("You're closing the game.");
         stopWindow.setContentText("Are you sure? Unsaved data may be lost.");
         stopWindow.setTitle("WARNING!");
         stopWindow.getButtonTypes().clear();

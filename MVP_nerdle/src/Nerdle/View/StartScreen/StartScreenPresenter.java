@@ -49,6 +49,7 @@ public class StartScreenPresenter {
 //                mmSv.getScene().getWindow().setWidth(5 * uiSettings.getResX()/10);
 //                mmSp.windowsHandler();
                 updateView();
+                mmSp.windowsHandler();
             }
         });
     }
