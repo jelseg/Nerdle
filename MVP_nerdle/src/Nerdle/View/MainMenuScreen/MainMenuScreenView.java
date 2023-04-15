@@ -59,27 +59,27 @@ public class MainMenuScreenView extends GridPane {
 
     }
 
-    public Button getNewGame() {
+    Button getNewGame() {
         return newGame;
     }
 
-    public Button getHighScores() {
+    Button getHighScores() {
         return highScores;
     }
 
-    public Button getRules() {
+    Button getRules() {
         return rules;
     }
 
-    public Button getAbout() {
+    Button getAbout() {
         return about;
     }
 
-    public Button getSettings() {
+    Button getSettings() {
         return settings;
     }
 
-    public Button getExit() {
+    Button getExit() {
         return exit;
     }
 }
