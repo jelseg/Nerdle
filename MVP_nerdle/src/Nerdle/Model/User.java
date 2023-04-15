@@ -8,14 +8,14 @@ import java.util.*;
 
 public class User {
 
-    private static String SAVEGAME_FOLDER = "resources" + File.separator + "other" + File.separator + "users" +
+    private static final String SAVEGAME_FOLDER = "resources" + File.separator + "other" + File.separator + "users" +
             File.separator;
     private String name;
 
     private Map<Difficulty,Integer> scores;
     private int totScore;
 
-    private class ScoreRecord{
+    private static class ScoreRecord{
 
         private int answerId;
         private LocalDate date;
@@ -91,7 +91,7 @@ public class User {
         //create new user if not exists
         if(! scoreFile.exists()){
             try(FileWriter writer = new FileWriter(scoreFile)){
-
+                // creates empty scorefile
             }
             catch(IOException exception){
                 throw new NerdleException("Could not create a score file for the new user.",exception);
