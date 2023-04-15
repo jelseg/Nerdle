@@ -17,15 +17,15 @@ public class NewUserScreenView extends BorderPane {
   }
 
   private void initialiseNodes(){
-        this.label=new Label("Fill in username:");
+        this.label = new Label("Who are you?");
         this.username=new TextField();
-        this.btnUsername=new Button("Start new game");
+        this.btnUsername=new Button("Create new user and Start new game");
   }
   private void layoutNodes(){
         BorderPane.setMargin(this.label,new Insets(10));
         BorderPane.setMargin(this.username,new Insets(10));
         this.setLeft(label);
-        this.setRight(username);
+        this.setCenter(username);
 
         BorderPane bpButton=new BorderPane();
         bpButton.setCenter(btnUsername);

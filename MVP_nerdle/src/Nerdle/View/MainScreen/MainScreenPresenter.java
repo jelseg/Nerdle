@@ -25,11 +25,11 @@ import java.util.List;
 
 public class MainScreenPresenter {
 
-    private MVPModel model;
+    private Nerdle model;
     private MainScreenView view;
     private UISettings uiSettings;
 
-    public MainScreenPresenter(MVPModel model, MainScreenView view, UISettings uiSettings) {
+    public MainScreenPresenter(Nerdle model, MainScreenView view, UISettings uiSettings) {
         this.model = model;
         this.view = view;
         this.uiSettings = uiSettings;
@@ -45,7 +45,7 @@ public class MainScreenPresenter {
             @Override
             public void handle(ActionEvent event) {
                 SettingsView settingsView = new SettingsView(uiSettings);
-                SettingsPresenter presenter = new SettingsPresenter(model, settingsView, uiSettings);
+                SettingsPresenter presenter = new SettingsPresenter(new MVPModel(), settingsView, uiSettings);
                 Stage settingsStage = new Stage();
                 settingsStage.setTitle("Settings");
                 settingsStage.initOwner(view.getScene().getWindow());
@@ -156,7 +156,7 @@ public class MainScreenPresenter {
             @Override
             public void handle(ActionEvent event) {
                 AboutScreenView aboutScreenView = new AboutScreenView(uiSettings);
-                AboutScreenPresenter aboutScreenPresenter = new AboutScreenPresenter(model, aboutScreenView, uiSettings);
+                AboutScreenPresenter aboutScreenPresenter = new AboutScreenPresenter(new MVPModel(), aboutScreenView, uiSettings);
                 Stage aboutScreenStage = new Stage();
                 aboutScreenStage.initOwner(view.getScene().getWindow());
                 aboutScreenStage.initModality(Modality.APPLICATION_MODAL);
@@ -189,7 +189,7 @@ public class MainScreenPresenter {
             @Override
             public void handle(ActionEvent event) {
                 RulesScreenView rulesScreenView = new RulesScreenView(uiSettings);
-                RulesScreenPresenter rulesScreenPresenter = new RulesScreenPresenter(model, rulesScreenView, uiSettings);
+                RulesScreenPresenter rulesScreenPresenter = new RulesScreenPresenter(new MVPModel(), rulesScreenView, uiSettings);
                 Stage rulesScreenStage = new Stage();
                 rulesScreenStage.initOwner(view.getScene().getWindow());
                 rulesScreenStage.initModality(Modality.APPLICATION_MODAL);

@@ -5,6 +5,8 @@ import Nerdle.View.AboutScreen.AboutScreenPresenter;
 import Nerdle.View.AboutScreen.AboutScreenView;
 import Nerdle.View.MainScreen.MainScreenPresenter;
 import Nerdle.View.MainScreen.MainScreenView;
+import Nerdle.View.NewGameScreen.NewGamePresenter;
+import Nerdle.View.NewGameScreen.NewGameScreenView;
 import Nerdle.View.NewUserScreen.NewUserScreenPresenter;
 import Nerdle.View.NewUserScreen.NewUserScreenView;
 import Nerdle.View.RulesScreen.RulesScreenPresenter;
@@ -46,15 +48,34 @@ public class MainMenuScreenPresenter {
         view.getNewGame().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                NewUserScreenView newUserScreenView = new NewUserScreenView();
+
+                /*
+
+                NewGameScreenView newGameView = new NewGameScreenView();
+                //NewUserScreenView newUserScreenView = new NewUserScreenView();
+                NewUserScreenView newUserScreenView = newGameView.getNewUserView();
                 NewUserScreenPresenter newUserScreenPresenter = new NewUserScreenPresenter(model, newUserScreenView, uiSettings);
                 Stage newUserStage = new Stage();
                 newUserStage.initOwner(view.getScene().getWindow());
                 newUserStage.initModality(Modality.APPLICATION_MODAL);
-                newUserStage.setScene(new Scene(newUserScreenView));
+                //newUserStage.setScene(new Scene(newUserScreenView));
+                newUserStage.setScene(new Scene(newGameView));
                 newUserStage.setX(view.getScene().getWindow().getX() + 100);
                 newUserStage.setY(view.getScene().getWindow().getY() + 100);
                 newUserStage.showAndWait();
+                */
+                NewGameScreenView newGameView = new NewGameScreenView();
+                NewGamePresenter newGamePresenter = new NewGamePresenter(newGameView,uiSettings);
+                Stage newGameStage = new Stage();
+                // set owner to window of this presenters view
+                newGameStage.initOwner(view.getScene().getWindow());
+                newGameStage.initModality(Modality.APPLICATION_MODAL);
+
+                newGameStage.setScene(new Scene(newGameView));
+                newGameStage.setX(view.getScene().getWindow().getX() + 100);
+                newGameStage.setY(view.getScene().getWindow().getY() + 100);
+                newGameStage.showAndWait();
+
             }
         });
 

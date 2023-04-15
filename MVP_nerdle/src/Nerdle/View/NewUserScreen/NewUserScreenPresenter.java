@@ -1,6 +1,7 @@
 package Nerdle.View.NewUserScreen;
 
 import Nerdle.Model.MVPModel;
+import Nerdle.Model.Nerdle;
 import Nerdle.View.MainScreen.MainScreenPresenter;
 import Nerdle.View.MainScreen.MainScreenView;
 import Nerdle.View.UISettings;
@@ -29,7 +30,7 @@ public class NewUserScreenPresenter{
             @Override
             public void handle(ActionEvent actionEvent) {
                 MainScreenView mainScreenView=new MainScreenView(uiSettings);
-                MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(model,mainScreenView,uiSettings);
+                MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(new Nerdle(),mainScreenView,uiSettings);
                 view.getScene().setRoot(mainScreenView);
                 try {
                     mainScreenView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
