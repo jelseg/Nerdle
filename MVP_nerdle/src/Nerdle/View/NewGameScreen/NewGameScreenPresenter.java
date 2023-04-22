@@ -2,12 +2,10 @@ package Nerdle.View.NewGameScreen;
 
 
 import Nerdle.Model.Difficulty;
-import Nerdle.Model.MVPModel;
 import Nerdle.Model.Nerdle;
 import Nerdle.Model.User;
 import Nerdle.View.MainScreen.MainScreenPresenter;
 import Nerdle.View.MainScreen.MainScreenView;
-import Nerdle.View.NewUserScreen.NewUserScreenView;
 import Nerdle.View.UISettings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,13 +13,13 @@ import javafx.event.EventHandler;
 import java.net.MalformedURLException;
 import java.util.List;
 
-public class NewGamePresenter {
+public class NewGameScreenPresenter {
 
     private List<User> usersModel;
     private NewGameScreenView view;
     private UISettings uiSettings;
 
-    public NewGamePresenter(NewGameScreenView view, UISettings uiSettings){
+    public NewGameScreenPresenter(NewGameScreenView view, UISettings uiSettings){
         usersModel = User.getAllUsers();
         this.view = view;
         this.uiSettings=uiSettings;

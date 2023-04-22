@@ -3,12 +3,10 @@ package Nerdle.View.MainMenuScreen;
 import Nerdle.Model.MVPModel;
 import Nerdle.View.AboutScreen.AboutScreenPresenter;
 import Nerdle.View.AboutScreen.AboutScreenView;
-import Nerdle.View.MainScreen.MainScreenPresenter;
-import Nerdle.View.MainScreen.MainScreenView;
-import Nerdle.View.NewGameScreen.NewGamePresenter;
+import Nerdle.View.HighscoresScreen.HighscoresScreenPresenter;
+import Nerdle.View.HighscoresScreen.HighscoresScreenView;
+import Nerdle.View.NewGameScreen.NewGameScreenPresenter;
 import Nerdle.View.NewGameScreen.NewGameScreenView;
-import Nerdle.View.NewUserScreen.NewUserScreenPresenter;
-import Nerdle.View.NewUserScreen.NewUserScreenView;
 import Nerdle.View.RulesScreen.RulesScreenPresenter;
 import Nerdle.View.RulesScreen.RulesScreenView;
 import Nerdle.View.SettingsScreen.SettingsPresenter;
@@ -21,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -64,16 +61,16 @@ public class MainMenuScreenPresenter {
                 newUserStage.setY(view.getScene().getWindow().getY() + 100);
                 newUserStage.showAndWait();
                 */
-                NewGameScreenView newGameView = new NewGameScreenView();
-                NewGamePresenter newGamePresenter = new NewGamePresenter(newGameView,uiSettings);
+                NewGameScreenView newGameView = new NewGameScreenView(uiSettings);
+                NewGameScreenPresenter newGameScreenPresenter = new NewGameScreenPresenter(newGameView,uiSettings);
                 Stage newGameStage = new Stage();
                 // set owner to window of this presenters view
                 newGameStage.initOwner(view.getScene().getWindow());
                 newGameStage.initModality(Modality.APPLICATION_MODAL);
-
+                newGameStage.setTitle(uiSettings.getApplicationName() + " - New game");
                 newGameStage.setScene(new Scene(newGameView));
-                newGameStage.setX(view.getScene().getWindow().getX() + 100);
-                newGameStage.setY(view.getScene().getWindow().getY() + 100);
+                newGameStage.setX(view.getScene().getWindow().getX()+50);
+                newGameStage.setY(view.getScene().getWindow().getY()+50);
                 newGameStage.showAndWait();
 
             }
@@ -97,6 +94,7 @@ public class MainMenuScreenPresenter {
                 Stage aboutStage = new Stage();
                 aboutStage.initOwner(view.getScene().getWindow());
                 aboutStage.initModality(Modality.APPLICATION_MODAL);
+                aboutStage.setTitle(uiSettings.getApplicationName() + " - About");
                 aboutStage.setScene(new Scene(aboutScreenView));
                 aboutStage.setX(view.getScene().getWindow().getX() + 100);
                 aboutStage.setY(view.getScene().getWindow().getY() + 100);
@@ -114,7 +112,7 @@ public class MainMenuScreenPresenter {
                 rulesScreenStage.initModality(Modality.APPLICATION_MODAL);
                 Scene scene = new Scene(rulesScreenView);
                 rulesScreenStage.setScene(scene);
-                rulesScreenStage.setTitle(uiSettings.getApplicationName() + " - Info");
+                rulesScreenStage.setTitle(uiSettings.getApplicationName() + " - Rules");
                 rulesScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
                 rulesScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
@@ -182,6 +180,52 @@ public class MainMenuScreenPresenter {
                 }
             }
         });
+
+        view.getHighScores().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                HighscoresScreenView highscoresScreenView=new HighscoresScreenView();
+                HighscoresScreenPresenter highscoresScreenPresenter=new HighscoresScreenPresenter();
+                Stage highscoreStage=new Stage();
+                highscoreStage.setTitle("Highscores");
+                highscoreStage.initOwner(view.getScene().getWindow());
+                highscoreStage.initModality(Modality.APPLICATION_MODAL);
+                Scene scene = new Scene(highscoresScreenView);
+                highscoreStage.setScene(scene);
+                highscoreStage.setTitle(uiSettings.getApplicationName() + " - Highscores");
+                highscoreStage.setX(view.getScene().getWindow().getX() + 10);
+                highscoreStage.setY(view.getScene().getWindow().getY() + 10);
+                if (Files.exists(uiSettings.getApplicationIconPath())) {
+                    try {
+                        highscoreStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
+                    } catch (MalformedURLException ex) {
+                        // do nothing, if toURL-conversion fails, program can continue
+                    }
+                } else { // do nothing, if ApplicationIconImage is not available, program can continue
+                }
+                highscoresScreenView.getScene().getWindow().setHeight(uiSettings.getResY() / 2);
+                highscoresScreenView.getScene().getWindow().setWidth(uiSettings.getResX() / 4);
+                if (uiSettings.styleSheetAvailable()) {
+                    highscoreStage.getScene().getStylesheets().removeAll();
+                    try {
+                        highscoreStage.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                    } catch (MalformedURLException ex) {
+                        // do nothing, if toURL-conversion fails, program can continue
+                    }
+                }
+                highscoreStage.showAndWait();
+                if (uiSettings.styleSheetAvailable()) {
+                    view.getScene().getStylesheets().removeAll();
+                    try {
+                        view.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                    } catch (MalformedURLException ex) {
+                        // do nothing, if toURL-conversion fails, program can continue
+                    }
+                }
+
+            }
+        });
+
 
         view.getExit().setOnAction(new EventHandler<ActionEvent>() {
             @Override
