@@ -20,7 +20,7 @@ public class Overzicht {
         possibilities[14] = new EquationCharacter(EquationCharacter.Operation.EQUALS);
     }
 
-    public void updateColors(Combination latestCombo){
+    void updateColors(Combination latestCombo){
         // PLACEHOLDER
 
         for (EquationCharacter cCombo: latestCombo.getCharacters()){
@@ -47,6 +47,10 @@ public class Overzicht {
             }
 
         }
+    }
+
+    public EquationCharacter[] getPossibilities(){
+        return possibilities;
     }
 
     public EquationCharacter getPossibility(int i) {

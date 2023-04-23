@@ -33,14 +33,25 @@ public class MainScreenPresenter {
         this.model = model;
         this.view = view;
         this.uiSettings = uiSettings;
+
+        initOverzicht();
+
         updateView();
         EventHandlers();
     }
 
     private void updateView() {
+
+        System.out.println(model.getCurrentGuess().getCombinationString());
+
+        updateOverzicht();
      }
 
     private void EventHandlers() {
+
+        addOverzichtEventHandlers();
+
+
         view.getSettingsItem().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -220,106 +231,45 @@ public class MainScreenPresenter {
                 }
                 rulesScreenStage.showAndWait();
             }});
-        view.getIv0().setOnMouseClicked(new EventHandler<MouseEvent>() {
+    }
+
+
+    private void addOverzichtEventHandlers(){
+
+        for (int i = 0; i < model.getOverzicht().getPossibilities().length; i++){
+            EquationCharacter eqc = model.getOverzicht().getPossibility(i);
+
+            CharacterTile currentTile = view.getOverzichtView().get(i);
+
+            currentTile.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    model.addToCurrentGuess(eqc);
+
+
+                    updateView();
+                }
+            });
+        }
+
+        view.getOverzichtView().getEnterButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-            }
-        });
-        view.getIv1().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+                model.enterCurrentGuess();
+
+                updateView();
             }
         });
 
-        view.getIv2().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getOverzichtView().getBackSpaceButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                model.deleteFromCurrentGuess();
+
+                updateView();
             }
         });
 
-        view.getIv3().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIv4().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIv5().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIv6().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIv7().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIv8().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIv9().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-        view.getIvplus().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIvminus().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIvmultiply().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIvdivide().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIvequals().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
-
-        view.getIvdelete().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println("85");
-            }
-        });
-
-        view.getIventer().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-            }
-        });
     }
 
     public void windowsHandler() {
@@ -343,5 +293,31 @@ public class MainScreenPresenter {
         } else {
             view.getScene().getWindow().hide();
         }
+    }
+
+
+    private void initOverzicht(){
+        for(EquationCharacter eqc: model.getOverzicht().getPossibilities()){
+            if(eqc.getOperation() == EquationCharacter.Operation.NUMBER){
+                view.getOverzichtView().addNumber(eqc);
+            }
+            else {
+                view.getOverzichtView().addOperation(eqc);
+            }
+        }
+    }
+
+    private void updateOverzicht(){
+
+
+
+        for (int i = 0; i < model.getOverzicht().getPossibilities().length; i++) {
+            EquationCharacter eqc = model.getOverzicht().getPossibility(i);
+
+            CharacterTile currentTile = view.getOverzichtView().get(i);
+
+            currentTile.changeCharacter(eqc);
+        }
+
     }
 }
