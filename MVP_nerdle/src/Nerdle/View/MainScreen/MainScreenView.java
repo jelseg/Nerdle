@@ -1,5 +1,6 @@
 package Nerdle.View.MainScreen;
 
+import Nerdle.Model.Difficulty;
 import Nerdle.View.UISettings;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -48,7 +49,7 @@ public class MainScreenView extends BorderPane {
         this.newgameMI=new MenuItem("New game");
         this.highscoresMI=new MenuItem("Highscores");
 
-
+        this.guessesView =new GuessesView(uiSettings, Difficulty.NORMAL.getComboLength(), Difficulty.NORMAL.getnTries());
         this.overzichtView = new OverzichtView(uiSettings);
 
 
@@ -64,7 +65,7 @@ public class MainScreenView extends BorderPane {
         Menu menuHelp = new Menu("Help",null, aboutMI, rulesMI);
         MenuBar menuBar = new MenuBar(menuFile,menuNewGame,menuSavegame,menuHighscores,menuHelp);
         setTop(menuBar);
-
+        setCenter(guessesView);
         setBottom(overzichtView);
 
     }

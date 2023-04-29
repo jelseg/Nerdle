@@ -10,6 +10,7 @@ import javafx.scene.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -28,12 +29,15 @@ public class MainScreenPresenter {
     private Nerdle model;
     private MainScreenView view;
     private UISettings uiSettings;
+    int column=0;
+    int row=0;
 
     public MainScreenPresenter(Nerdle model, MainScreenView view, UISettings uiSettings) {
         this.model = model;
         this.view = view;
         this.uiSettings = uiSettings;
-
+        column =0;
+        row =0;
         initOverzicht();
 
         updateView();
@@ -235,7 +239,7 @@ public class MainScreenPresenter {
 
 
     private void addOverzichtEventHandlers(){
-
+        ImageView[][] guessesArray=view.guessesView.getGuessesArray();
         for (int i = 0; i < model.getOverzicht().getPossibilities().length; i++){
             EquationCharacter eqc = model.getOverzicht().getPossibility(i);
 
@@ -244,8 +248,21 @@ public class MainScreenPresenter {
             currentTile.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
+
                     model.addToCurrentGuess(eqc);
 
+                    StringBuilder builder = new StringBuilder("images/buttons/lightgray");
+                    switch (eqc.getOperation()){
+                        case NUMBER: builder.append(eqc.getNumber()); break;
+                        case EQUALS: builder.append("_equals"); break;
+                        case PLUS: builder.append("_plus"); break;
+                        case MINUS: builder.append("_minus"); break;
+                        case DIVIDE: builder.append("_divide"); break;
+                        case MULTIPLY: builder.append("_multiply"); break;
+                    }
+                    guessesArray[column][row].setImage(new Image(builder+".png"));
+
+                    column++;
 
                     updateView();
                 }
@@ -255,9 +272,22 @@ public class MainScreenPresenter {
         view.getOverzichtView().getEnterButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                model.enterCurrentGuess();
 
+
+                for(column=0;column<model.getCurrentGuess().getCombinationLength();column++){
+
+                    if (model.getCurrentGuess().getCombinationString().charAt(column) == model.getAnswer().getCombinationString().charAt(column)) {
+//                        System.out.println();
+                    
+//                    guessesArray[column][row].setImage(new Image( ));
+                    }
+//
+
+                }
+                model.enterCurrentGuess();
                 updateView();
+                row++;
+                column=0;
             }
         });
 
@@ -265,7 +295,8 @@ public class MainScreenPresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 model.deleteFromCurrentGuess();
-
+                --column;
+                guessesArray[column][row].setImage(new Image("images/darkgrey.png"));
                 updateView();
             }
         });
