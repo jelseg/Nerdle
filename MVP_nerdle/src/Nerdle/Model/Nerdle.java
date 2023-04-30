@@ -196,4 +196,8 @@ public class Nerdle {
 
     public int getCurrentGuessNumber() { //return currentGuessNumber;
         return guesses.size(); }
+
+    public EquationCharacter[] getLastGuessCharacters(){
+        return guesses.get(guesses.size()-1).getCharacters();
+    }
 }
