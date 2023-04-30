@@ -274,15 +274,83 @@ public class MainScreenPresenter {
             public void handle(MouseEvent mouseEvent) {
 
 
-                for(column=0;column<model.getCurrentGuess().getCombinationLength();column++){
+                for (column = 0; column < model.getCurrentGuess().getCombinationLength(); column++) {
+                    String guessCharacter = String.valueOf(model.getCurrentGuess().getCombinationString().charAt(column));
+                    String answerCharacter = String.valueOf(model.getAnswer().getCombinationString().charAt(column));
+                    String answer = model.getAnswer().getCombinationString();
+                    if (guessCharacter.equals(answerCharacter)) {
 
-                    if (model.getCurrentGuess().getCombinationString().charAt(column) == model.getAnswer().getCombinationString().charAt(column)) {
-//                        System.out.println();
-                    
-//                    guessesArray[column][row].setImage(new Image( ));
+                        StringBuilder builder = new StringBuilder("images/results/green");
+                        switch (guessCharacter) {
+                            case "0": builder.append("0");break;
+                            case "1": builder.append("1");break;
+                            case "2": builder.append("2");break;
+                            case "3": builder.append("3");break;
+                            case "4": builder.append("4");break;
+                            case "5": builder.append("5");break;
+                            case "6": builder.append("6");break;
+                            case "7": builder.append("7");break;
+                            case "8": builder.append("8");break;
+                            case "9": builder.append("9");break;
+                            case "=": builder.append("_equals");break;
+                            case "+": builder.append("_plus");break;
+                            case "-": builder.append("_minus");break;
+                            case "/": builder.append("_divide");break;
+                            case "x": builder.append("_multiply");break;
+                        }
+                        builder.append(".png");
+                        String imagepath=builder.toString();
+                        guessesArray[column][row].setImage(new Image(imagepath));
                     }
-//
+                    else if (!answer.contains(guessCharacter)) {
 
+                        StringBuilder builder = new StringBuilder("images/results/black");
+                        switch (guessCharacter) {
+                            case "0": builder.append("0");break;
+                            case "1": builder.append("1");break;
+                            case "2": builder.append("2");break;
+                            case "3": builder.append("3");break;
+                            case "4": builder.append("4");break;
+                            case "5": builder.append("5");break;
+                            case "6": builder.append("6");break;
+                            case "7": builder.append("7");break;
+                            case "8": builder.append("8");break;
+                            case "9": builder.append("9");break;
+                            case "=": builder.append("_equals");break;
+                            case "+": builder.append("_plus");break;
+                            case "-": builder.append("_minus");break;
+                            case "/": builder.append("_divide");break;
+                            case "x": builder.append("_multiply");break;
+                        }
+                        builder.append(".png");
+                        String imagepath=builder.toString();
+                        guessesArray[column][row].setImage(new Image(imagepath));
+                    }
+
+                    else if (answer.contains(guessCharacter)) {
+                        
+                        StringBuilder builder = new StringBuilder("images/results/purple");
+                        switch (guessCharacter) {
+                            case "0": builder.append("0");break;
+                            case "1": builder.append("1");break;
+                            case "2": builder.append("2");break;
+                            case "3": builder.append("3");break;
+                            case "4": builder.append("4");break;
+                            case "5": builder.append("5");break;
+                            case "6": builder.append("6");break;
+                            case "7": builder.append("7");break;
+                            case "8": builder.append("8");break;
+                            case "9": builder.append("9");break;
+                            case "=": builder.append("_equals");break;
+                            case "+": builder.append("_plus");break;
+                            case "-": builder.append("_minus");break;
+                            case "/": builder.append("_divide");break;
+                            case "x": builder.append("_multiply");break;
+                        }
+                        builder.append(".png");
+                        String imagepath=builder.toString();
+                        guessesArray[column][row].setImage(new Image(imagepath));
+                    }
                 }
                 model.enterCurrentGuess();
                 updateView();
