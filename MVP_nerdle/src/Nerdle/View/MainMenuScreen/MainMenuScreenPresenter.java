@@ -184,8 +184,8 @@ public class MainMenuScreenPresenter {
         view.getHighScores().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                HighscoresScreenView highscoresScreenView=new HighscoresScreenView();
-                HighscoresScreenPresenter highscoresScreenPresenter=new HighscoresScreenPresenter();
+                HighscoresScreenView highscoresScreenView=new HighscoresScreenView(uiSettings);
+                HighscoresScreenPresenter highscoresScreenPresenter=new HighscoresScreenPresenter(highscoresScreenView,uiSettings);
                 Stage highscoreStage=new Stage();
                 highscoreStage.setTitle("Highscores");
                 highscoreStage.initOwner(view.getScene().getWindow());

@@ -14,6 +14,7 @@ public class User {
 
     private Map<Difficulty,Integer> scores;
     private int totScore;
+    private double avgAttempts; //note: is Integer.MAX_VALUE when the user hasn't finished any game
 
     private static class ScoreRecord{
 
@@ -76,6 +77,9 @@ public class User {
             }
             return difficulty.getnTries() - nAttempts+1;
         }
+        public int getnAttempts(){
+            return nAttempts;
+        }
 
         public Difficulty getDifficulty(){
             return difficulty;
@@ -85,6 +89,7 @@ public class User {
     public User(String name){
         this.name = name;
         totScore = Integer.MIN_VALUE;
+        avgAttempts = Integer.MIN_VALUE;
 
         File scoreFile = getScoreFile();
 
@@ -116,6 +121,13 @@ public class User {
         return totScore;
     }
 
+    public double getAvgAttempts() throws NerdleException{
+        if (avgAttempts == Integer.MIN_VALUE){
+            loadScore();
+        }
+        return avgAttempts;
+    }
+
 
     // reads the userfiles for the records and updates the scores and totScore
     private void loadScore() throws NerdleException{
@@ -129,19 +141,34 @@ public class User {
             scores.put(diff,0);
         }
 
+        //init value average calculation
+        int totAttemps = 0;
+        int totGames = 0;
+
         try(BufferedReader reader = new BufferedReader(new FileReader(getScoreFile()))){
             String line;
             while ((line = reader.readLine()) != null){
                 ScoreRecord record = new ScoreRecord(line);
                 scores.replace(record.getDifficulty(),scores.get(record.getDifficulty()) + record.getScore());
+                totAttemps += record.getnAttempts();
+                totGames++;
             }
         } catch (IOException exception){
             scores = null;
             throw new NerdleException("Could not read scores for " + name,exception);
         }
 
-
+        //calculate total score based on weighted scores per difficulty
         totScore = 1*scores.get(Difficulty.NORMAL);
+
+        //calculate average
+        if(totGames == 0){
+            //give a default value when the player hasn't finished a game yet
+            avgAttempts = Integer.MAX_VALUE;
+        }
+        else {
+            avgAttempts = (double)totAttemps/totGames;
+        }
     }
 
     private File getScoreFile(){
