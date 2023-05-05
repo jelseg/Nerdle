@@ -1,7 +1,13 @@
 package Nerdle.Model;
 
+/**
+ * Class representing one symbol of an equation and a color (used for marking it as correct, etc)
+ */
 public class EquationCharacter {
 
+    /**
+     * enum representing the color of the EquationCharacter -> Correct, wrong place, wrong,not checked
+     */
     public static enum CombinationColor {
         GRAY(' '),GREEN('+'),PURPLE('?'),BLACK('x');
 
@@ -11,6 +17,10 @@ public class EquationCharacter {
 
         private char cRepresent;
 
+        /**
+         * used in the toString method of Combination for the console/test version of the game
+         * @return single character representation
+         */
         @Override
         public String toString() {
             return ""+cRepresent;
@@ -23,14 +33,25 @@ public class EquationCharacter {
 
     private CombinationColor color;
     private Operation operation;
+    /**
+     * When operation = = Number -> the number
+     * else -> -1
+     */
     int number;
 
+    /**
+     * creates an empty EquationCharacter
+     */
     public EquationCharacter(){
         color = CombinationColor.GRAY;
         this.operation = Operation.EMPTY;
         number = -1;
     }
 
+    /**
+     * constructor for operations
+     * @param operation PLUS,MINUS,MULTIPLY,DIVIDE or EQUALS
+     */
     public EquationCharacter(Operation operation){
         if (operation == Operation.NUMBER) {
             throw new IllegalArgumentException("For operation NUMBER use the contructor EquationCharacter(int)");
@@ -40,6 +61,10 @@ public class EquationCharacter {
         number = -1;
     }
 
+    /**
+     * constructor for Numbers
+     * @param number
+     */
     public EquationCharacter(int number){
         if (number < 0 || number > 9){
             throw new IllegalArgumentException("An equationcharacter can only have a number from 0 to 9");
@@ -50,12 +75,21 @@ public class EquationCharacter {
         this.number = number;
     }
 
+    /**
+     * copy constructor
+     * @param other
+     */
     public EquationCharacter(EquationCharacter other){
         this.color = other.getColor();
         this.operation = other.operation;
         this.number = other.number;
     }
 
+    /**
+     *
+     * @param other
+     * @return true when the operation and number are the same
+     */
     public boolean equals(EquationCharacter other){
 
         return this.number == other.number && this.operation == other.operation;

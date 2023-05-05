@@ -6,16 +6,32 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
+/**
+ * A User plus methods for loading and saving scores
+ */
 public class User {
 
     private static final String SAVEGAME_FOLDER = "resources" + File.separator + "other" + File.separator + "users" +
             File.separator;
     private String name;
 
+    /**
+     * scores will be empty until the first time a method for getting scores is called
+     */
     private Map<Difficulty,Integer> scores;
+    /**
+     * totScore is Integere.MIN_VALUE until the first time a method for getting scores is called
+     */
     private int totScore;
+    /**
+     * avgAttempts is Integere.MIN_VALUE until the first time a method for getting scores is called
+     * is Integer.MAX_VALUE if the user hasn't finished a game yet
+     */
     private double avgAttempts; //note: is Integer.MAX_VALUE when the user hasn't finished any game
 
+    /**
+     * class to parse one line of the score file
+     */
     private static class ScoreRecord{
 
         private int answerId;
@@ -86,6 +102,10 @@ public class User {
         }
     }
 
+    /**
+     * note: when there is no user with the given name it will create a new users (based on score files)
+     * @param name
+     */
     public User(String name){
         this.name = name;
         totScore = Integer.MIN_VALUE;
@@ -128,8 +148,10 @@ public class User {
         return avgAttempts;
     }
 
-
-    // reads the userfiles for the records and updates the scores and totScore
+    /**
+     * reads the userfiles for the records and updates the scores and totScore
+     * @throws NerdleException
+     */
     private void loadScore() throws NerdleException{
 
 
@@ -171,13 +193,29 @@ public class User {
         }
     }
 
+    /**
+     * costructs the path where the score file should be based on the user's name
+     * @return
+     */
     private File getScoreFile(){
         return new File(SAVEGAME_FOLDER + "SCORES_" + name + ".txt");
     }
+
+    /**
+     *
+     * @param difficulty
+     * @return File object for the file containing the last saved game of the user (might not exist if he hasn't
+     * saved a game yet on this difficulty)
+     */
     File getLastGameFile(Difficulty difficulty){
         return new File(SAVEGAME_FOLDER + "GAME_" + name + "_" + difficulty + ".txt");
     }
 
+    /**
+     *
+     * @return all users that have a score file
+     * @throws NerdleException
+     */
     public static List<User> getAllUsers() throws NerdleException{
         File folder = new File(SAVEGAME_FOLDER);
 
@@ -203,7 +241,13 @@ public class User {
     }
 
 
-
+    /**
+     *  adds a score record to the score file of the user
+     * @param answer the id will be added to the score record
+     * @param difficulty
+     * @param nAttempts number of attempts needed to finish the game (take max+1 when lost)
+     * @throws NerdleException
+     */
     void saveResult(Answer answer, Difficulty difficulty,int nAttempts) throws NerdleException{
         ScoreRecord record = new ScoreRecord(answer.getId(),nAttempts<=difficulty.getnTries()?nAttempts:-1, difficulty);
 

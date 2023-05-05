@@ -1,0 +1,13 @@
+unnamed package
+Nerdle
+Nerdle.Model
+Nerdle.View
+Nerdle.View.AboutScreen
+Nerdle.View.HighscoresScreen
+Nerdle.View.MainMenuScreen
+Nerdle.View.MainScreen
+Nerdle.View.NewGameScreen
+Nerdle.View.NewUserScreen
+Nerdle.View.RulesScreen
+Nerdle.View.SettingsScreen
+Nerdle.View.StartScreen

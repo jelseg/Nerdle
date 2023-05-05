@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class representing one equation consisting of multiple EquationCharacters.
+ *
+ */
 public class Combination {
 
     //protected static int COMBINATION_SIZE = 8;
@@ -12,6 +16,12 @@ public class Combination {
     protected EquationCharacter[] characters;
     private int currentPos;
 
+    /**
+     *
+     * creates a new empty combination to be filled
+     *
+     * @param difficulty A difficulty deciding the number of EquationCharacters in the Combination
+     */
     public Combination(Difficulty difficulty){
         this.difficulty = difficulty;
         characters = new EquationCharacter[difficulty.getComboLength()];
@@ -21,6 +31,14 @@ public class Combination {
         currentPos = 0;
     }
 
+    /**
+     * chacks if the current equation is legal
+     * meaning:
+     *          all EquationCharacters are filled in
+     *          the is exactly one =
+     *          when calculated the left side of the equation equals the right side
+     * @return true when the equation in the combination is legal
+     */
     public boolean isLegal(){
 
 
@@ -76,12 +94,22 @@ public class Combination {
         }
     }
 
-
-    public double calculate(List<EquationCharacter> chars){
+    /**
+     * parses an array of equation characters to the correct number
+     * @param chars array of Equation characters (no =) representing a formula
+     * @return the result of the calculations
+     */
+    double calculate(List<EquationCharacter> chars){
         double d = calculateSums(chars);
         //System.out.println(d);
         return d;
     }
+
+    /**
+     * helper function for calculate
+     * splits the array of characters on + and -, calls the calculateMultiply function on the parts and oes the sums
+     * and substractions
+     */
     private double calculateSums(List<EquationCharacter> chars){
         List<EquationCharacter> currentPart = new LinkedList<>();
 
@@ -110,7 +138,13 @@ public class Combination {
         return tot;
     }
 
+
     //assumes there are only NUMBER, MULTIPLY and DIVIDE characters in chars (should only be called by calculateSums)
+
+    /**
+     *  helper function for calculate
+     * @param chars should only contain numbers, x and /
+     */
     private double calculateMultiply(List<EquationCharacter> chars){
 
         double currentNumb = 0;
@@ -143,6 +177,15 @@ public class Combination {
 
     // sets the colors of the characters according (same as other -> green, in other -> purple, else Black)
     // return true if all correct
+
+    /**
+     *
+     * compares this Combination with another one, setting the colors in this Combination
+     *
+     * @param other the correct Combination
+     * @return true when all equationCharacters match
+     * @throws NerdleException
+     */
     public boolean compare(Combination other) throws NerdleException{
 
         if (other.getCombinationLength() != getCombinationLength()){
@@ -191,6 +234,11 @@ public class Combination {
         return allCorrect;
     }
 
+    /**
+     * adds an EquationCharacter to the end of the combination
+     * @param c EquationCharacter to add
+     * @return True when it could be added, False when the Combination is already full
+     */
     public boolean addToEnd(EquationCharacter c){
         if ( currentPos < difficulty.getComboLength()) {
             characters[currentPos] = c;
@@ -202,6 +250,14 @@ public class Combination {
         }
     }
 
+    /**
+     *
+     * adds an EquationCharacter to the end of the combination but with a char as input. Used for parsing Strings from
+     * files or the consol/test version of the program
+     *
+     * @param c *,/,+,-,= or a number (0-9)
+     * @return true when succesfully added, false when Combination is already full
+     */
     public boolean addToEnd(char c){
         EquationCharacter.Operation ops = null;
         switch (c){
@@ -229,6 +285,11 @@ public class Combination {
         return this.addToEnd(eqc);
     }
 
+    /**
+     * deletes the last EquationCharacter from the Combination
+     *
+     * @return True when there was an EquationCharacter to remove
+     */
     public boolean deleteLast(){
         if (currentPos > 0 ) {
             currentPos--;
@@ -247,6 +308,10 @@ public class Combination {
     }
 
 
+    /**
+     * used in the console/test version of the game
+     * @return two line string with on first line the equation and on the second line symbols for the colors
+     */
     @Override
     public String toString() {
 
@@ -260,6 +325,9 @@ public class Combination {
         return s1.append("\n").append(s2).toString();
     }
 
+    /**
+     * a string containing only the equation
+     */
     public String getCombinationString(){
         StringBuilder s1 = new StringBuilder();
         for(EquationCharacter c : characters){

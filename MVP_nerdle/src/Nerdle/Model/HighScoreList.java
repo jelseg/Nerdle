@@ -3,22 +3,21 @@ package Nerdle.Model;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * used as collection of users for hioghscoresScreenView
+ */
 public class HighScoreList {
 
     private List<User> users;
 
     public HighScoreList(){
         users = User.getAllUsers();
-
-        //remove where avg is Integer.MAX_VALUE (have not finished any game)
-        /**
-        for (User user: users) {
-            if (user.getAvgAttempts() == Integer.MAX_VALUE){
-                users.remove(user);
-            }
-        }**/
     }
 
+    /**
+     *
+     * @return sorted list of all users, the lowest average first
+     */
     public List<User> getByAverageAttempts(){
 
 
