@@ -1,6 +1,7 @@
 package Nerdle.View.MainScreen;
 
 import Nerdle.Model.Difficulty;
+import Nerdle.Model.EquationCharacter;
 import Nerdle.View.UISettings;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
@@ -15,8 +16,8 @@ public class GuessesView extends GridPane {
     //    CharacterTile[][] characterTiles;
     private int nGuesses;
     private int guessLength;
-    private Image blanco;
-    private ImageView[][] guessesArray;
+    //private CharacterTile blanco;
+    private CharacterTile[][] guessesArray;
 
     public GuessesView(UISettings uiSettings, int nGuesses, int guessLength) {
         this.uiSettings = uiSettings;
@@ -29,14 +30,13 @@ public class GuessesView extends GridPane {
 
     private void initialiseNodes() {
         //to be filled in
-        blanco = new Image("images/darkgrey.png");
-        guessesArray = new ImageView[guessLength][nGuesses];
+        //blanco = new Image("images/darkgrey.png");
+        guessesArray = new CharacterTile[guessLength][nGuesses];
 
         for (int i = 0; i < guessLength; i++) {
             for (int j = 0; j < nGuesses; j++) {
-                ImageView ivBlanco = new ImageView(blanco);
-                add(ivBlanco, i, j);
-                guessesArray[i][j] = ivBlanco;
+                CharacterTile blanco = new CharacterTile(new EquationCharacter());
+                guessesArray[i][j] = blanco;
             }
         }
     }
@@ -45,6 +45,7 @@ public class GuessesView extends GridPane {
         for (int i = 0; i < guessLength; i++) {
             for (int j = 0; j < nGuesses; j++) {
                 ImageView iv = guessesArray[i][j];
+                add(iv,i,j);
                 setMargin(iv, new Insets(5));
                 //to be filled in
             }
@@ -53,10 +54,10 @@ public class GuessesView extends GridPane {
 
     CharacterTile getElement(int i, int j) {
         //to be filled in
-        return new CharacterTile();
+        return guessesArray[j][i];
     }
 
-    public ImageView[][] getGuessesArray() {
+    public CharacterTile[][] getGuessesArray() {
         return guessesArray;
     }
 }

@@ -52,6 +52,7 @@ public class MainScreenPresenter {
         System.out.println(model.getCurrentGuess().getCombinationString());
 
         updateOverzicht();
+        updateGuessesView();
      }
 
     private void EventHandlers() {
@@ -254,6 +255,7 @@ public class MainScreenPresenter {
 
                     model.addToCurrentGuess(eqc);
 
+                    /**
                     StringBuilder builder = new StringBuilder("images/buttons/lightgray");
                     switch (eqc.getOperation()){
                         case NUMBER: builder.append(eqc.getNumber()); break;
@@ -265,7 +267,9 @@ public class MainScreenPresenter {
                     }
                     guessesArray[column][row].setImage(new Image(builder+".png"));
 
+
                     column++;
+                     **/
 
                     updateView();
                 }
@@ -315,9 +319,10 @@ public class MainScreenPresenter {
                             // do nothing, if toURL-conversion fails, program can continue
                         }
                     }
-                    return;
+                    //return;
                 }
 
+                /*
                 for (column = 0; column < model.getCurrentGuess().getCombinationLength(); column++) {
                     String guessCharacter = String.valueOf(model.getCurrentGuess().getCombinationString().charAt(column));
                     String answerCharacter = String.valueOf(model.getAnswer().getCombinationString().charAt(column));
@@ -396,13 +401,19 @@ public class MainScreenPresenter {
                         guessesArray[column][row].setImage(new Image(imagepath));
                     }
                 }
-                model.enterCurrentGuess();
+
+                 */
+                //model.enterCurrentGuess();
                 updateView();
                 row++;
                 column=0;
                 if(model.isFoundIt()){
                     mainScreenTransition=new MainScreenTransition(view);
                     mainScreenTransition.play();
+                } else if (model.isOver()) {
+
+                    //placeholder
+
                 }
             }
         });
@@ -411,8 +422,8 @@ public class MainScreenPresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 model.deleteFromCurrentGuess();
-                --column;
-                guessesArray[column][row].setImage(new Image("images/darkgrey.png"));
+                //--column;
+                //guessesArray[column][row].setImage(new Image("images/darkgrey.png"));
                 updateView();
             }
         });
@@ -464,6 +475,30 @@ public class MainScreenPresenter {
             CharacterTile currentTile = view.getOverzichtView().get(i);
 
             currentTile.changeCharacter(eqc);
+        }
+
+    }
+
+    private void updateGuessesView(){
+        List<Combination> allGuesses = model.getGuesses();
+        Combination currentguess = model.getCurrentGuess();
+
+        GuessesView gv = view.getGuessesView();
+
+        //update all done guesses
+        // for future updates: performance
+        for (int i =0; i < allGuesses.size(); i++){
+            EquationCharacter[] guessCharacters = allGuesses.get(i).getCharacters();
+            for (int j = 0; j < guessCharacters.length; j++){
+                gv.getElement(i,j).changeCharacter(guessCharacters[j]);
+            }
+        }
+
+        int i = allGuesses.size();
+        EquationCharacter[] curChars = currentguess.getCharacters();
+        for (int j=0; j < curChars.length; j++){
+            gv.getElement(i,j).changeCharacter(curChars[j]);
+            //System.out.println(j + curChars[j].getOperation().toString());
         }
 
     }

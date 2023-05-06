@@ -1,6 +1,5 @@
 package Nerdle.View.HighscoresScreen;
 
-import Nerdle.Model.User;
 import Nerdle.View.UISettings;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -10,6 +9,11 @@ public class HighscoresScreenView extends BorderPane {
 
     private TableView table;
     private UISettings uiSettings;
+
+    public HighscoresScreenView(){
+        initialiseNodes();
+        layoutNodes();
+    }
 
     public HighscoresScreenView(UISettings uiSettings){
         this.uiSettings = uiSettings;

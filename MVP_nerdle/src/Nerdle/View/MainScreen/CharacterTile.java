@@ -51,10 +51,9 @@ public class CharacterTile extends ImageView {
             imagePath = builder.toString();
 
             //System.out.println(imagePath);
-
-            Image image = new Image(imagePath);
-            this.setImage(image);
         }
+        Image image = new Image(imagePath);
+        this.setImage(image);
 
 
     }
