@@ -2,6 +2,8 @@ package Nerdle.View.MainScreen;
 
 import Nerdle.Model.*;
 import Nerdle.View.AboutScreen.*;
+import Nerdle.View.FalseGuessScreen.FalseGuessScreenPresenter;
+import Nerdle.View.FalseGuessScreen.FalseGuessScreenView;
 import Nerdle.View.RulesScreen.*;
 import Nerdle.View.SettingsScreen.*;
 import Nerdle.View.UISettings;
@@ -29,6 +31,7 @@ public class MainScreenPresenter {
     private Nerdle model;
     private MainScreenView view;
     private UISettings uiSettings;
+    private MainScreenTransition mainScreenTransition;
     int column=0;
     int row=0;
 
@@ -273,6 +276,47 @@ public class MainScreenPresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
 
+                if(!model.enterCurrentGuess()){
+                    FalseGuessScreenView falseGuessScreenView = new FalseGuessScreenView();
+                    FalseGuessScreenPresenter falseGuessScreenPresenter = new FalseGuessScreenPresenter(falseGuessScreenView, uiSettings);
+                    Stage falseguesStage = new Stage();
+                    falseguesStage.setTitle("False guess");
+                    falseguesStage.initOwner(view.getScene().getWindow());
+                    falseguesStage.initModality(Modality.APPLICATION_MODAL);
+                    Scene scene = new Scene(falseGuessScreenView);
+                    falseguesStage.setScene(scene);
+                    falseguesStage.setTitle(uiSettings.getApplicationName() + " - False guess");
+                    falseguesStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
+                    falseguesStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
+                    if (Files.exists(uiSettings.getApplicationIconPath())) {
+                        try {
+                            falseguesStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
+                        } catch (MalformedURLException ex) {
+                            // do nothing, if toURL-conversion fails, program can continue
+                        }
+                    } else { // do nothing, if ApplicationIconImage is not available, program can continue
+                    }
+                    falseGuessScreenView.getScene().getWindow().setHeight(uiSettings.getResY() / 5);
+                    falseGuessScreenView.getScene().getWindow().setWidth(uiSettings.getResX() / 5);
+                    if (uiSettings.styleSheetAvailable()) {
+                        falseguesStage.getScene().getStylesheets().removeAll();
+                        try {
+                            falseguesStage.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                        } catch (MalformedURLException ex) {
+                            // do nothing, if toURL-conversion fails, program can continue
+                        }
+                    }
+                    falseguesStage.showAndWait();
+                    if (uiSettings.styleSheetAvailable()) {
+                        view.getScene().getStylesheets().removeAll();
+                        try {
+                            view.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                        } catch (MalformedURLException ex) {
+                            // do nothing, if toURL-conversion fails, program can continue
+                        }
+                    }
+                    return;
+                }
 
                 for (column = 0; column < model.getCurrentGuess().getCombinationLength(); column++) {
                     String guessCharacter = String.valueOf(model.getCurrentGuess().getCombinationString().charAt(column));
@@ -328,7 +372,7 @@ public class MainScreenPresenter {
                     }
 
                     else if (answer.contains(guessCharacter)) {
-                        
+
                         StringBuilder builder = new StringBuilder("images/results/purple");
                         switch (guessCharacter) {
                             case "0": builder.append("0");break;
@@ -356,6 +400,10 @@ public class MainScreenPresenter {
                 updateView();
                 row++;
                 column=0;
+                if(model.isFoundIt()){
+                    mainScreenTransition=new MainScreenTransition(view);
+                    mainScreenTransition.play();
+                }
             }
         });
 
