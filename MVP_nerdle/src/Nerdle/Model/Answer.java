@@ -7,11 +7,14 @@ import java.util.Formatter;
 import java.util.LinkedList;
 import java.util.Random;
 
+/**
+ *  extension to the combination class including methods for generating and saving the daily answer.
+ */
 public class Answer extends Combination{
 
     //%d should be filled with length of the answer
-    static final String ALL_ANSWERS_FILE = "resources" + File.separator + "other" + File.separator + "answers"+
-            File.separator + "allAnswers_%d.txt";
+    //static final String ALL_ANSWERS_FILE = "resources" + File.separator + "other" + File.separator + "answers"+
+            //File.separator + "allAnswers_%d.txt";
     // id:answer
     static final String ALL_ANSWERS_FORMAT = "%012d;%s%n";
 
@@ -24,6 +27,11 @@ public class Answer extends Combination{
 
     private int id;
 
+    /**
+     *
+     * @param difficulty
+     * @throws NerdleException when it couldn't open or parse the current answer file or the all answer file.
+     */
     public Answer (Difficulty difficulty) throws NerdleException{
         super(difficulty);
         // loading and checks to be added
@@ -35,22 +43,42 @@ public class Answer extends Combination{
         }
     }
 
-    //returns true if string s is a valid equation and could be added as a combination
+    /**
+     *
+     * turns a string into equation characters. Used to parse an answer in the all answers file or current answer file
+     * to a Combination/Answer object.
+     *
+     * @param s String representing the equation
+     * @return true when all characters in the string s could be added to the answer
+     */
     private boolean addStringToCombo(String s){
+
+        boolean ok = true;
+
         //placeholder
         for (int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
-            super.addToEnd(c);
+            if(!super.addToEnd(c)){
+                ok = false;
+            }
         }
-        return true;
+        return ok;
     }
 
-    //returns the string version of the answer combination
+    /**
+     *
+     * chooses a new answer from the list of possible answer contain
+     * it will turn this equation into a Combination
+     *
+     * @return a string representing the newly choosen answer
+     * @throws NerdleException when the file with all possible answer couldn't be opened or when the choosen line
+     * isn't formatted propperly
+     */
     private String generateNewAnswer() throws NerdleException{
 
         //make list of all possible answers
         LinkedList<String> allAnswers = new LinkedList<>();
-        try (BufferedReader in = new BufferedReader(new FileReader(String.format(ALL_ANSWERS_FILE,difficulty.getComboLength())))){
+        try (BufferedReader in = new BufferedReader(new FileReader(getAllAnswerFile(difficulty)))){
             String line;
             while ((line = in.readLine()) != null ){
                 allAnswers.add(line);
@@ -91,7 +119,12 @@ public class Answer extends Combination{
 
     }
 
-    //returns true when there is a current answer
+    /**
+     * checks the current answer file. If it contains today's answer it will use this equation as combination
+     *
+     * @return true when the date in the current answer file is today (and the answer from this file is used)
+     * @throws NerdleException the current answer file couldn't be opened or wasn't formatted properly
+     */
     private boolean openCurrentAnswer() throws NerdleException {
 
         File answerFile = new File(String.format(ANSWER_FILE,difficulty));
@@ -144,6 +177,13 @@ public class Answer extends Combination{
 
     }
 
+    /**
+     *
+     * writes the string representing an equationt to the current answer file.
+     *
+     * @param conbinationStr String representing the equation. We use the exact string found in the all answers file
+     * @throws NerdleException when an IOException happens while overwriting the current answer file
+     */
     private void saveCurrentAnswer(String conbinationStr) throws NerdleException {
         File answerFile = new File(String.format(ANSWER_FILE,difficulty));
 
@@ -155,7 +195,22 @@ public class Answer extends Combination{
         }
     }
 
+    /**
+     *
+     * @return the id of the answer as found in the all answers file
+     */
     public int getId() {
         return id;
+    }
+
+    /**
+     * generates the path to the text file containing all possible answers for a difficulty
+     *
+     * @param difficulty the difficulty for which you want the file
+     * @return the path to the file with all possible answers
+     */
+    static String getAllAnswerFile(Difficulty difficulty){
+        return "resources" + File.separator + "other" + File.separator + "answers"+
+                File.separator + "allAnswers_" + difficulty.getComboLength() + ".txt";
     }
 }

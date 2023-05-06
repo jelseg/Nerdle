@@ -6,6 +6,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Main class of the game, containing all elements of the game
+ */
 public class Nerdle {
 
     static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -23,6 +26,10 @@ public class Nerdle {
 
     private User user;
 
+    /**
+     * @deprecated use version with user and difficulty
+     * @throws NerdleException
+     */
     public Nerdle() throws NerdleException{
 
         difficulty = Difficulty.NORMAL;
@@ -38,6 +45,12 @@ public class Nerdle {
         overzicht = new Overzicht();
     }
 
+    /**
+     *
+     * @param user
+     * @param difficulty
+     * @throws NerdleException for problems opening any save or config file
+     */
     public Nerdle(User user,Difficulty difficulty) throws NerdleException{
         this.difficulty = difficulty;
 
@@ -55,6 +68,11 @@ public class Nerdle {
         loadSaveGame();
     }
 
+    /**
+     * checks if there is a saved game for the user
+     * if the saved game is of today, it loads this game
+     * @throws NerdleException
+     */
     private void loadSaveGame() throws NerdleException{
         //allign with saveGame
         File saveFile = user.getLastGameFile(difficulty);
@@ -88,6 +106,10 @@ public class Nerdle {
 
         }
     }
+
+    /**
+     * to be used when an error occurs to replace loaded guesses that couldn't be parsed
+     */
     private void setErrorCombo(){
         Combination defaultCombo = new Combination(difficulty);
         EquationCharacter defaultCharacter = new EquationCharacter(0);
@@ -101,6 +123,9 @@ public class Nerdle {
         }
     }
 
+    /**
+     * saves the users game
+     */
     public void saveGame() throws NerdleException {
         //align with loadSaveGame
 
@@ -123,18 +148,42 @@ public class Nerdle {
         }
     }
 
+    /**
+     * add an EquationCharacter to the end of current guess
+     * @param c EquationCharacter
+     * @return true when the character was added successfully
+     */
     public boolean addToCurrentGuess(EquationCharacter c){
         return currentGuess.addToEnd(c);
     }
+    /**
+     * add an EquationCharacter to the end of current guess
+     * @param c +,-,*,/,= or 0-9
+     * @return true when the character was added successfully
+     */
     public boolean addToCurrentGuess(char c){
         return currentGuess.addToEnd(c);
     }
 
+    /**
+     * removes the last EquationCharacter of the current guess
+     * @return true when there was an EquationCharacter to remove
+     */
     public boolean deleteFromCurrentGuess(){
         return currentGuess.deleteLast();
     }
 
     //returns true if guess is processed
+
+    /**
+     * checks if the current guess is legal (else stops and returns false)
+     * compares it with the correct Answer (this sets the colors of the guess)
+     * update the Overzicht
+     * adds it to end of guesses
+     * empties the current guess
+     * if the game ends it will save the game for the user
+     * @return true if the current guess was added to the guesses
+     */
     public boolean enterCurrentGuess(){
         return enterCurrentGuess(true);
     }
@@ -142,6 +191,13 @@ public class Nerdle {
     // used in initialisation, if loading a save game that has been completed there should not be a new Result saved
     //for the user. For users of the function saveIfEnd should always be true so they can only use the version without
     //argument.
+
+    /**
+     * added this extra function to be used when loading a saved game (should not be saved again when loading a
+     * finished game)
+     * @param saveIfEnd True -> if the CurrentGuess finishes the game, it will save the game and adds the score
+     * @return true if the current guess was added to the guesses
+     */
     private boolean enterCurrentGuess(boolean saveIfEnd){
         if (currentGuess.isLegal() && getCurrentGuessNumber() < difficulty.getnTries()) {
             foundIt = currentGuess.compare(answer);
@@ -163,6 +219,10 @@ public class Nerdle {
         currentGuess = new Combination(difficulty);
     }
 
+    /**
+     *
+     * @return True when the game is over (won or max number of guesses reached)
+     */
     public boolean isOver(){
         if (foundIt || getCurrentGuessNumber() >= difficulty.getnTries()){
             return true;
@@ -186,6 +246,10 @@ public class Nerdle {
         return answer;
     }
 
+    /**
+     *
+     * @return true when the game has been won
+     */
     public boolean isFoundIt() {
         return foundIt;
     }

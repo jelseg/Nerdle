@@ -1,5 +1,9 @@
 package Nerdle.Model;
 
+/**
+ * Class containing all possible Operations+Numbers
+ * The colors are based on the previous guesses
+ */
 public class Overzicht {
     public static final int N_POSSIBILITIES = 15;
 
@@ -20,6 +24,13 @@ public class Overzicht {
         possibilities[14] = new EquationCharacter(EquationCharacter.Operation.EQUALS);
     }
 
+    /**
+     *
+     * update the colors of the Overzicht. (black -> not in the equation, Green -> you found a correct place, purple in
+     * the equation not correct place, gray -> not yet tried
+     *
+     * @param latestCombo the combination just played
+     */
     void updateColors(Combination latestCombo){
         // PLACEHOLDER
 

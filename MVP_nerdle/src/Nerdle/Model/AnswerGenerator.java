@@ -15,7 +15,7 @@ public class AnswerGenerator {
         //int length = 8;
         Difficulty difficulty = Difficulty.NORMAL;
 
-        String answersFileName = String.format(Answer.ALL_ANSWERS_FILE,difficulty.getComboLength());
+        String answersFileName = Answer.getAllAnswerFile(difficulty);
 
         try (PrintWriter pW = new PrintWriter(new BufferedWriter(new FileWriter(answersFileName)))) {
             findAllLegal(difficulty.getComboLength(), overzicht, new Combination(difficulty),true,pW,0);
