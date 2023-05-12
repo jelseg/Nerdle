@@ -154,7 +154,10 @@ public class Nerdle {
      * @return true when the character was added successfully
      */
     public boolean addToCurrentGuess(EquationCharacter c){
-        return currentGuess.addToEnd(c);
+        if (!isOver()) {
+            return currentGuess.addToEnd(c);
+        }
+        return false;
     }
     /**
      * add an EquationCharacter to the end of current guess
@@ -162,7 +165,10 @@ public class Nerdle {
      * @return true when the character was added successfully
      */
     public boolean addToCurrentGuess(char c){
-        return currentGuess.addToEnd(c);
+        if (!isOver()) {
+            return currentGuess.addToEnd(c);
+        }
+        return false;
     }
 
     /**
@@ -170,7 +176,10 @@ public class Nerdle {
      * @return true when there was an EquationCharacter to remove
      */
     public boolean deleteFromCurrentGuess(){
-        return currentGuess.deleteLast();
+        if (!isOver()) {
+            return currentGuess.deleteLast();
+        }
+        return false;
     }
 
     //returns true if guess is processed

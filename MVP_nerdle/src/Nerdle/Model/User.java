@@ -24,8 +24,8 @@ public class User {
      */
     private int totScore;
     /**
-     * avgAttempts is Integere.MIN_VALUE until the first time a method for getting scores is called
-     * is Integer.MAX_VALUE if the user hasn't finished a game yet
+     * avgAttempts is Double.MIN_VALUE until the first time a method for getting scores is called
+     * is Double.MAX_VALUE if the user hasn't finished a game yet
      */
     private double avgAttempts; //note: is Integer.MAX_VALUE when the user hasn't finished any game
 
@@ -109,7 +109,7 @@ public class User {
     public User(String name){
         this.name = name;
         totScore = Integer.MIN_VALUE;
-        avgAttempts = Integer.MIN_VALUE;
+        avgAttempts = Double.MIN_VALUE;
 
         File scoreFile = getScoreFile();
 
@@ -142,7 +142,7 @@ public class User {
     }
 
     public double getAvgAttempts() throws NerdleException{
-        if (avgAttempts == Integer.MIN_VALUE){
+        if (avgAttempts == Double.MIN_VALUE){
             loadScore();
         }
         return avgAttempts;
@@ -153,9 +153,6 @@ public class User {
      * @throws NerdleException
      */
     private void loadScore() throws NerdleException{
-
-
-        //temp code
 
         //initialise scores Map
         scores = new EnumMap<Difficulty, Integer>(Difficulty.class);
@@ -169,7 +166,7 @@ public class User {
 
         try(BufferedReader reader = new BufferedReader(new FileReader(getScoreFile()))){
             String line;
-            while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null && !line.equals("")){
                 ScoreRecord record = new ScoreRecord(line);
                 scores.replace(record.getDifficulty(),scores.get(record.getDifficulty()) + record.getScore());
                 totAttemps += record.getnAttempts();
@@ -186,7 +183,7 @@ public class User {
         //calculate average
         if(totGames == 0){
             //give a default value when the player hasn't finished a game yet
-            avgAttempts = Integer.MAX_VALUE;
+            avgAttempts = Double.MAX_VALUE;
         }
         else {
             avgAttempts = (double)totAttemps/totGames;

@@ -65,7 +65,7 @@ public class Overzicht {
     }
 
     public EquationCharacter getPossibility(int i) {
-        return possibilities[i].copy();
+        return possibilities[i];
     }
 
     @Override

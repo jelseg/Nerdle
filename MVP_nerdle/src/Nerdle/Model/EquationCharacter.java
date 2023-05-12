@@ -130,7 +130,14 @@ public class EquationCharacter {
         return " ";
     }
 
-    public EquationCharacter copy(){
-        return new EquationCharacter(this);
+    /**
+     * copies the number and operation to a new EquationCharacter
+     * @return Copy of this but with color = GRAY
+     */
+    public EquationCharacter copyGray(){
+        EquationCharacter neqc =  new EquationCharacter();
+        neqc.operation = this.operation;
+        neqc.number = this.number;
+        return neqc;
     }
 }
