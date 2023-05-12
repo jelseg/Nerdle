@@ -24,6 +24,7 @@ public class OverzichtView extends VBox {
         this.uiSettings = uiSettings;
         initialiseNodes();
         layoutNodes();
+        getStylesheets().add("stylesheets/Buttons.css");
 
         lijst = new ArrayList();
     }
@@ -35,6 +36,8 @@ public class OverzichtView extends VBox {
 
         enterButton = new ImageView("images/buttons/enter.png");
         backSpaceButton = new ImageView("images/buttons/delete.png");
+        enterButton.setId("buttonhover");
+        backSpaceButton.setId("buttonhover");
     }
 
     private void layoutNodes() {
@@ -47,6 +50,7 @@ public class OverzichtView extends VBox {
 
     CharacterTile addNumber(EquationCharacter eqc){
         CharacterTile characterTile = new CharacterTile(eqc);
+        characterTile.setId("buttonhover");
         numbers.getChildren().add(characterTile);
         lijst.add(characterTile);
         return characterTile;
@@ -54,6 +58,7 @@ public class OverzichtView extends VBox {
 
     CharacterTile addOperation(EquationCharacter eqc){
         CharacterTile characterTile = new CharacterTile(eqc);
+        characterTile.setId("buttonhover");
         int index = operations.getChildren().size() - 2;
         operations.getChildren().add(index,characterTile);
         lijst.add(characterTile);
