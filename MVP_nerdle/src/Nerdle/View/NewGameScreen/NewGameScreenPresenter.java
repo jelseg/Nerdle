@@ -9,6 +9,7 @@ import Nerdle.View.MainScreen.MainScreenView;
 import Nerdle.View.UISettings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -19,10 +20,13 @@ public class NewGameScreenPresenter {
     private NewGameScreenView view;
     private UISettings uiSettings;
 
-    public NewGameScreenPresenter(NewGameScreenView view, UISettings uiSettings){
+    private Scene mainScene;
+
+    public NewGameScreenPresenter(NewGameScreenView view, UISettings uiSettings,Scene mainScene){
         usersModel = User.getAllUsers();
         this.view = view;
         this.uiSettings=uiSettings;
+        this.mainScene = mainScene;
         addEventHandlers();
         updateview();
     }
@@ -45,14 +49,18 @@ public class NewGameScreenPresenter {
         MainScreenView mainScreenView=new MainScreenView(uiSettings);
         MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(nerdleModel,mainScreenView,uiSettings);
 
-        view.getScene().setRoot(mainScreenView);
+        view.getScene().getWindow().hide();
+        mainScene.setRoot(mainScreenView);
         try {
             mainScreenView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
         } catch (MalformedURLException ex) {
             //do nothing, if toURL-conversion fails, program can continue
         }
         mainScreenView.getScene().getWindow().sizeToScene();
+        mainScreenView.getScene().getWindow().centerOnScreen();
         mainScreenPresenter.windowsHandler();
+
+
 
     }
 

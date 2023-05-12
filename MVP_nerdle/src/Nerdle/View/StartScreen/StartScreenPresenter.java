@@ -36,18 +36,19 @@ public class StartScreenPresenter {
 
                 MainMenuScreenView mmSv=new MainMenuScreenView();
                 view.getScene().setRoot(mmSv);
-                MainMenuScreenPresenter mmSp=new MainMenuScreenPresenter(model, mmSv,uiSettings);
+                MainMenuScreenPresenter mmSp=new MainMenuScreenPresenter(model,mmSv,uiSettings);
                 try {
                     mmSv.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
                 } catch (MalformedURLException ex) {
                     // // do nothing, if toURL-conversion fails, program can continue
                 }
-//                mmSv.getScene().getWindow().sizeToScene();
-//                mmSv.getScene().getWindow().setX(uiSettings.getResX()/20);
-//                mmSv.getScene().getWindow().setY(uiSettings.getResY()/20);
-//                mmSv.getScene().getWindow().setHeight(5 * uiSettings.getResY()/10);
-//                mmSv.getScene().getWindow().setWidth(5 * uiSettings.getResX()/10);
-//                mmSp.windowsHandler();
+                mmSv.getScene().getWindow().sizeToScene();
+                //mmSv.getScene().getWindow().setX(uiSettings.getResX()/10);
+                //mmSv.getScene().getWindow().setY(uiSettings.getResY()/10);
+                mmSv.getScene().getWindow().setHeight(5 * uiSettings.getResY()/10);
+                mmSv.getScene().getWindow().setWidth(5 * uiSettings.getResX()/10);
+                mmSv.getScene().getWindow().centerOnScreen();
+                mmSp.windowsHandler();
                 updateView();
                 mmSp.windowsHandler();
             }

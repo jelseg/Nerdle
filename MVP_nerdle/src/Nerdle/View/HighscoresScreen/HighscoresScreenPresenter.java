@@ -57,6 +57,8 @@ public class HighscoresScreenPresenter {
                 super.updateItem(number, empty);
                 if (number == null || empty) {
                     setText(null);
+                } else if (number==Double.MAX_VALUE) {
+                    setText("");
                 } else {
                     setText(String.format("%.2f", number.doubleValue()));
                 }
