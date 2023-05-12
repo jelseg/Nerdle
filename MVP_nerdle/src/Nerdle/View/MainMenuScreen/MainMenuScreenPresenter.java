@@ -32,7 +32,7 @@ public class MainMenuScreenPresenter {
     private MainMenuScreenView view;
     private UISettings uiSettings;
 
-    public MainMenuScreenPresenter(MVPModel model, MainMenuScreenView view, UISettings uiSettings) {
+    public MainMenuScreenPresenter(MVPModel model,MainMenuScreenView view, UISettings uiSettings) {
         this.model = model;
         this.view = view;
         this.uiSettings = uiSettings;
@@ -62,7 +62,7 @@ public class MainMenuScreenPresenter {
                 newUserStage.showAndWait();
                 */
                 NewGameScreenView newGameView = new NewGameScreenView(uiSettings);
-                NewGameScreenPresenter newGameScreenPresenter = new NewGameScreenPresenter(newGameView,uiSettings);
+                NewGameScreenPresenter newGameScreenPresenter = new NewGameScreenPresenter(newGameView,uiSettings,view.getScene());
                 Stage newGameStage = new Stage();
                 // set owner to window of this presenters view
                 newGameStage.initOwner(view.getScene().getWindow());
