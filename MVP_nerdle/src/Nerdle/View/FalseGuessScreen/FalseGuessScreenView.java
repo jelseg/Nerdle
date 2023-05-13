@@ -13,6 +13,7 @@ public class FalseGuessScreenView extends BorderPane {
     private Button button;
 
     public FalseGuessScreenView() {
+        getStylesheets().add("stylesheets/Buttons.css");
         initialiseNodes();
         layoutNodes();
     }

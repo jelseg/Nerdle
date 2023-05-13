@@ -4,6 +4,7 @@ import Nerdle.Model.Difficulty;
 import Nerdle.View.MenuBarScreen.MenuBarPresenter;
 import Nerdle.View.MenuBarScreen.MenuBarView;
 import Nerdle.View.UISettings;
+import javafx.geometry.Pos;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -40,6 +41,8 @@ public class MainScreenView extends BorderPane {
         setTop(menuBarView);
         setCenter(guessesView);
         setBottom(overzichtView);
+        guessesView.setAlignment(Pos.CENTER);
+        overzichtView.setAlignment(Pos.CENTER);
 
     }
 
