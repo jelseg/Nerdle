@@ -1,21 +1,4 @@
-#testbutton{
-    -fx-background-color: lightgray;
-    -fx-border-color: black;
-}
-
-#testbutton:hover{
-    -fx-background-color: blue;
-}
-
-#buttonenter:hover{
-    -fx-background-color: darkgray;
+#buttonhover:hover{
+    -fx-cursor: HAND;
     -fx-rotate: 3;
-}
-
-#testbuttongreen{
-    -fx-background-color: lightgreen;
-}
-#testbuttonblack{
-    -fx-background-color: black;
-    -fx-text-fill:white;
 }
