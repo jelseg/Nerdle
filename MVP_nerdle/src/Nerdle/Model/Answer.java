@@ -21,9 +21,10 @@ public class Answer extends Combination{
     //replace %s by difficulty (=> one file per difficulty)
     private static final String ANSWER_FILE = "resources" + File.separator + "other" + File.separator + "answers"+
             File.separator + "currentAnswer_%s.txt";
-    //date;id;answer
+    //difficulty;id;answer
     private static final String ANSWER_FORMAT = "%s;%012d;%s";
     //private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyyMMdd");
+    private String currentAnswerfilepath = SavedGames.saveGamesFolder+File.separator + "CurrentAnswer.txt";
 
     private int id;
 
@@ -127,6 +128,64 @@ public class Answer extends Combination{
      */
     private boolean openCurrentAnswer() throws NerdleException {
 
+        File answerFile = new File(currentAnswerfilepath);
+
+        boolean foundAnswer = false;
+        boolean createNewFile = true;
+        String[] splittedLine = new String[]{};
+
+        if(answerFile.exists()){
+            try(BufferedReader reader = new BufferedReader(new FileReader(answerFile))) {
+                String line = reader.readLine();
+                if(line.equals(LocalDate.now().format(SavedGames.DATE_FORMAT))){
+                    createNewFile = false;
+                    while ((line = reader.readLine())!=null){
+                        String[] currentsplitedRecord = line.split(";");
+                        if (currentsplitedRecord.length != 3){
+                            throw new NerdleException("The current answer file is not properly formatted.");
+                        }
+                        if(currentsplitedRecord[0].equals(difficulty.toString())){
+                            foundAnswer = true;
+                            splittedLine = currentsplitedRecord;
+                        }
+                    }
+                }
+
+            }
+            catch (IOException exception){
+                throw new NerdleException("We could not read the file with the current answers",exception);
+            }
+        }
+
+        if (foundAnswer){
+            try {
+                id = Integer.parseInt(splittedLine[1]);
+            }
+            catch (NumberFormatException nfe){
+                throw new NerdleException("The file with the current answer is not formatted properly. " +
+                        "The second element should be an integer representing the id." + splittedLine[1]);
+            }
+
+            addStringToCombo(splittedLine[2]);
+
+            if (! isLegal()){
+                throw new NerdleException("The file with the current answer is not formatted properly. " +
+                        "The combination is not legal." + splittedLine[2]);
+            }
+        }
+
+        if (createNewFile){
+            try(BufferedWriter writer = new BufferedWriter(new FileWriter(answerFile))){
+                writer.write(LocalDate.now().format(SavedGames.DATE_FORMAT));
+                writer.newLine();
+            }
+            catch (IOException exception){
+                throw new NerdleException("Could not create or overwrite the current answer file",exception);
+            }
+        }
+
+        /*
+
         File answerFile = new File(String.format(ANSWER_FILE,difficulty));
 
         String[] splittedLine;
@@ -175,6 +234,10 @@ public class Answer extends Combination{
             return false;
         }
 
+         */
+
+        return foundAnswer;
+
     }
 
     /**
@@ -185,10 +248,11 @@ public class Answer extends Combination{
      * @throws NerdleException when an IOException happens while overwriting the current answer file
      */
     private void saveCurrentAnswer(String conbinationStr) throws NerdleException {
-        File answerFile = new File(String.format(ANSWER_FILE,difficulty));
+        File answerFile = new File(currentAnswerfilepath);
 
-        try(Formatter formater = new Formatter(answerFile)){
-            formater.format(ANSWER_FORMAT,LocalDate.now().format(Nerdle.DATE_FORMAT),id,conbinationStr);
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(answerFile,true))){
+            //formater.format(ANSWER_FORMAT,LocalDate.now().format(Nerdle.DATE_FORMAT),id,conbinationStr);
+            writer.write(String.format(ANSWER_FORMAT,difficulty,id,conbinationStr));
         }
         catch (IOException ioe){
             throw new NerdleException("A problem occurred trying to save today's answer.",ioe);
