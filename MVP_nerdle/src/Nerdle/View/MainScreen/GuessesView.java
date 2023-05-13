@@ -21,8 +21,8 @@ public class GuessesView extends GridPane {
 
     public GuessesView(UISettings uiSettings, int nGuesses, int guessLength) {
         this.uiSettings = uiSettings;
-        this.nGuesses = Difficulty.NORMAL.getnTries();
-        this.guessLength = Difficulty.NORMAL.getComboLength();
+        this.nGuesses = nGuesses;
+        this.guessLength = guessLength;
         initialiseNodes();
         layoutNodes();
     }

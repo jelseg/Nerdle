@@ -19,15 +19,15 @@ public class MainScreenView extends BorderPane {
 
     MenuBarView menuBarView;
 
-    public MainScreenView(UISettings uiSettings) {
+    public MainScreenView(UISettings uiSettings,Difficulty difficulty) {
         this.uiSettings = uiSettings;
-        initialiseNodes();
+        initialiseNodes(difficulty);
         layoutNodes();
     }
 
-    private void initialiseNodes() {
+    private void initialiseNodes(Difficulty difficulty) {
 
-        this.guessesView =new GuessesView(uiSettings, Difficulty.NORMAL.getComboLength(), Difficulty.NORMAL.getnTries());
+        this.guessesView =new GuessesView(uiSettings, difficulty.getnTries(), difficulty.getComboLength());
         this.overzichtView = new OverzichtView(uiSettings);
         this.menuBarView = new MenuBarView(uiSettings);
 

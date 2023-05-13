@@ -10,18 +10,20 @@ public class AnswerGenerator {
 
     public static void main(String[] args) {
 
-        Overzicht overzicht = new Overzicht();
+
 
         //int length = 8;
-        Difficulty difficulty = Difficulty.NORMAL;
+        //Difficulty difficulty = Difficulty.NORMAL;
 
-        String answersFileName = Answer.getAllAnswerFile(difficulty);
+        for(Difficulty difficulty: Difficulty.values()) {
+            Overzicht overzicht = new Overzicht(difficulty);
+            String answersFileName = Answer.getAllAnswerFile(difficulty);
 
-        try (PrintWriter pW = new PrintWriter(new BufferedWriter(new FileWriter(answersFileName)))) {
-            findAllLegal(difficulty.getComboLength(), overzicht, new Combination(difficulty),true,pW,0);
-        }
-        catch (IOException ioe){
-            ioe.printStackTrace();
+            try (PrintWriter pW = new PrintWriter(new BufferedWriter(new FileWriter(answersFileName)))) {
+                findAllLegal(difficulty.getComboLength(), overzicht, new Combination(difficulty), true, pW, 0);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
 
     }
@@ -37,7 +39,7 @@ public class AnswerGenerator {
             }
         }
         else {
-            for (int i = 0; i < Overzicht.N_POSSIBILITIES; i++){
+            for (int i = 0; i < overzicht.getnPossibilities(); i++){
                 EquationCharacter c = overzicht.getPossibility(i);
 
                 // we know that two operations after each other is always illegal => don't try

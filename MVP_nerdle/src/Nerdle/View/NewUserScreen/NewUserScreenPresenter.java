@@ -1,5 +1,6 @@
 package Nerdle.View.NewUserScreen;
 
+import Nerdle.Model.Difficulty;
 import Nerdle.Model.MVPModel;
 import Nerdle.Model.Nerdle;
 import Nerdle.View.MainScreen.MainScreenPresenter;
@@ -29,7 +30,7 @@ public class NewUserScreenPresenter{
         view.getBtnUsername().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                MainScreenView mainScreenView=new MainScreenView(uiSettings);
+                MainScreenView mainScreenView=new MainScreenView(uiSettings, Difficulty.NORMAL);
                 MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(new Nerdle(),mainScreenView,uiSettings);
                 view.getScene().setRoot(mainScreenView);
                 try {

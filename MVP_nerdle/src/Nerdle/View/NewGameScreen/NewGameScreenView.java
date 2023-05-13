@@ -1,5 +1,6 @@
 package Nerdle.View.NewGameScreen;
 
+import Nerdle.Model.Difficulty;
 import Nerdle.View.UISettings;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -17,8 +18,10 @@ public class NewGameScreenView extends GridPane {
     private UISettings uiSettings;
     private Label chooseLabel;
     private Label newLabel;
+    private Label difficultyLabel;
 
     private ComboBox<String> userBox;
+    private ComboBox<Difficulty> difficultyComboBox;
     private TextField username;
 
     private Button playButton;
@@ -35,7 +38,12 @@ public class NewGameScreenView extends GridPane {
         chooseLabel = new Label("Choose a user:");
         newLabel =  new Label("New user?");
 
+        difficultyLabel = new Label("Difficulty:");
+
         userBox = new ComboBox<>();
+        difficultyComboBox = new ComboBox<>();
+        difficultyComboBox.getItems().addAll(Difficulty.values());
+        difficultyComboBox.getSelectionModel().select(Difficulty.NORMAL);
 
         playButton = new Button("Play");
         createButton = new Button("Create and play");
@@ -45,15 +53,23 @@ public class NewGameScreenView extends GridPane {
     }
 
     private void layoutNodes(){
-        this.add(chooseLabel,0,0);
-        this.add(userBox,1,0);
-        this.add(playButton,0,1,2,1);
-        this.add(newLabel,0,2);
-        this.add(username,1,2);
-        this.add(createButton,0,3,2,1);
+
+        this.add(difficultyLabel,0,0);
+        this.add(difficultyComboBox,1,0);
+
+        this.add(chooseLabel,0,1);
+        this.add(userBox,1,1);
+        this.add(playButton,0,2,2,1);
+        this.add(newLabel,0,3);
+        this.add(username,1,3);
+        this.add(createButton,0,4,2,1);
         setPrefWidth(uiSettings.getLowestRes() / 5);
         setPrefHeight(uiSettings.getLowestRes() / 5);
         setAlignment(Pos.CENTER);
+        setHalignment(difficultyLabel,HPos.CENTER);
+        setValignment(difficultyLabel,VPos.CENTER);
+        setHalignment(difficultyComboBox,HPos.CENTER);
+        setValignment(difficultyComboBox,VPos.CENTER);
         setHalignment(chooseLabel, HPos.CENTER);
         setValignment(chooseLabel, VPos.CENTER);
         setHalignment(userBox, HPos.CENTER);
@@ -87,4 +103,6 @@ public class NewGameScreenView extends GridPane {
     Button getCreateButton() {
         return createButton;
     }
+
+    ComboBox<Difficulty> getDifficultyComboBox(){return difficultyComboBox;}
 }
