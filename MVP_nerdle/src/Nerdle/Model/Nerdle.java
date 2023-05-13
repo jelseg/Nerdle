@@ -26,6 +26,8 @@ public class Nerdle {
 
     private User user;
 
+    private SavedGames savedGames;
+
     /**
      * @deprecated use version with user and difficulty
      * @throws NerdleException
@@ -54,6 +56,8 @@ public class Nerdle {
     public Nerdle(User user,Difficulty difficulty) throws NerdleException{
         this.difficulty = difficulty;
 
+        this.savedGames = new SavedGames(user,difficulty);
+
         guesses = new LinkedList<>();
 
         //currentGuessNumber = 0;
@@ -74,6 +78,24 @@ public class Nerdle {
      * @throws NerdleException
      */
     private void loadSaveGame() throws NerdleException{
+
+        if(user != null) {
+            String[] savedGuesses = savedGames.getLastSavedGame();
+
+            for (String s : savedGuesses) {
+                for (char c : s.toCharArray()) {
+                    addToCurrentGuess(c);
+                }
+                if (!enterCurrentGuess(false)) {
+                    setErrorCombo();
+                    throw new NerdleException("The save file contains an illegal character. " +
+                            "It might be corrupt");
+                }
+
+            }
+        }
+
+        /*
         //allign with saveGame
         File saveFile = user.getLastGameFile(difficulty);
 
@@ -105,6 +127,7 @@ public class Nerdle {
 
 
         }
+         */
     }
 
     /**
@@ -130,6 +153,7 @@ public class Nerdle {
         //align with loadSaveGame
 
         if(user != null){
+            /*
             File saveFile = user.getLastGameFile(difficulty);
 
             try(BufferedWriter writer = new BufferedWriter( new FileWriter(saveFile,false))){
@@ -144,6 +168,9 @@ public class Nerdle {
             catch(IOException exception){
                 throw new NerdleException("Could not save your game",exception);
             }
+             */
+
+            savedGames.saveGame(guesses);
 
         }
     }

@@ -1,6 +1,7 @@
 package Nerdle.Model;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -11,8 +12,9 @@ import java.util.*;
  */
 public class User {
 
-    private static final String SAVEGAME_FOLDER = "resources" + File.separator + "other" + File.separator + "users" +
-            File.separator;
+    //private static final String SAVEGAME_FOLDER = "resources" + File.separator + "other" + File.separator + "users" +
+            //File.separator;
+    private static final String SAVEGAME_FOLDER = SavedGames.saveGamesFolder;
     private String name;
 
     /**
@@ -195,18 +197,20 @@ public class User {
      * @return
      */
     private File getScoreFile(){
-        return new File(SAVEGAME_FOLDER + "SCORES_" + name + ".txt");
+        return new File(SAVEGAME_FOLDER +File.separator+ "SCORES_" + name + ".txt");
     }
 
+    /*
     /**
      *
      * @param difficulty
      * @return File object for the file containing the last saved game of the user (might not exist if he hasn't
      * saved a game yet on this difficulty)
-     */
+
     File getLastGameFile(Difficulty difficulty){
         return new File(SAVEGAME_FOLDER + "GAME_" + name + "_" + difficulty + ".txt");
     }
+    */
 
     /**
      *
@@ -217,7 +221,13 @@ public class User {
         File folder = new File(SAVEGAME_FOLDER);
 
         if(!folder.exists() || !folder.isDirectory()){
-            throw new NerdleException("The folder \"" + SAVEGAME_FOLDER + "\" does not exist.");
+            //throw new NerdleException("The folder \"" + SAVEGAME_FOLDER + "\" does not exist.");
+            try {
+                Files.createDirectory(folder.toPath());
+            }
+            catch (IOException exception){
+                throw new NerdleException("The folder \"" + SAVEGAME_FOLDER + "\" does not exist and could not be created.");
+            }
         }
 
         List<User> users = new LinkedList<>();
