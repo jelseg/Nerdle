@@ -4,7 +4,6 @@ import Nerdle.Model.Difficulty;
 import Nerdle.Model.EquationCharacter;
 import Nerdle.View.UISettings;
 import javafx.geometry.Insets;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
@@ -17,7 +16,7 @@ public class GuessesView extends GridPane {
     private int nGuesses;
     private int guessLength;
     //private CharacterTile blanco;
-    private CharacterTile[][] guessesArray;
+    private GuessesTile[][] guessesArray;
 
     public GuessesView(UISettings uiSettings, int nGuesses, int guessLength) {
         this.uiSettings = uiSettings;
@@ -31,11 +30,11 @@ public class GuessesView extends GridPane {
     private void initialiseNodes() {
         //to be filled in
         //blanco = new Image("images/darkgrey.png");
-        guessesArray = new CharacterTile[guessLength][nGuesses];
+        guessesArray = new GuessesTile[guessLength][nGuesses];
 
         for (int i = 0; i < guessLength; i++) {
             for (int j = 0; j < nGuesses; j++) {
-                CharacterTile blanco = new CharacterTile(new EquationCharacter());
+                GuessesTile blanco = new GuessesTile(new EquationCharacter());
                 guessesArray[i][j] = blanco;
             }
         }
@@ -52,12 +51,12 @@ public class GuessesView extends GridPane {
         }
     }
 
-    CharacterTile getElement(int i, int j) {
+    GuessesTile getElement(int i, int j) {
         //to be filled in
         return guessesArray[j][i];
     }
 
-    public CharacterTile[][] getGuessesArray() {
+    public GuessesTile[][] getGuessesArray() {
         return guessesArray;
     }
 }

@@ -210,7 +210,7 @@ public class MenuBarPresenter {
                 rulesScreenStage.initModality(Modality.APPLICATION_MODAL);
                 Scene scene = new Scene(rulesScreenView);
                 rulesScreenStage.setScene(scene);
-                rulesScreenStage.setTitle(uiSettings.getApplicationName()+ " - Info");
+                rulesScreenStage.setTitle(uiSettings.getApplicationName()+ " - Rules");
                 rulesScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
                 rulesScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
@@ -296,7 +296,6 @@ public class MenuBarPresenter {
                         // do nothing, if toURL-conversion fails, program can continue
                     }
                 }
-
             }
         });
 

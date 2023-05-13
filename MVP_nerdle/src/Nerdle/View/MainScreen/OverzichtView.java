@@ -2,8 +2,11 @@ package Nerdle.View.MainScreen;
 
 import Nerdle.Model.EquationCharacter;
 import Nerdle.View.UISettings;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ public class OverzichtView extends VBox {
         this.uiSettings = uiSettings;
         initialiseNodes();
         layoutNodes();
+        getStylesheets().add("stylesheets/Buttons.css");
 
         lijst = new ArrayList();
     }
@@ -35,6 +39,8 @@ public class OverzichtView extends VBox {
 
         enterButton = new ImageView("images/buttons/enter.png");
         backSpaceButton = new ImageView("images/buttons/delete.png");
+        enterButton.setId("overviewbuttons");
+        backSpaceButton.setId("overviewbuttons");
     }
 
     private void layoutNodes() {
@@ -43,10 +49,15 @@ public class OverzichtView extends VBox {
         operations.getChildren().add(backSpaceButton);
 
         this.getChildren().addAll(numbers,operations);
+        setMargin(operations,new Insets(20));
+        setPadding(new Insets(20));
+        numbers.setAlignment(Pos.CENTER);
+        operations.setAlignment(Pos.CENTER);
     }
 
     CharacterTile addNumber(EquationCharacter eqc){
         CharacterTile characterTile = new CharacterTile(eqc);
+        characterTile.setId("overviewbuttons");
         numbers.getChildren().add(characterTile);
         lijst.add(characterTile);
         return characterTile;
@@ -54,6 +65,7 @@ public class OverzichtView extends VBox {
 
     CharacterTile addOperation(EquationCharacter eqc){
         CharacterTile characterTile = new CharacterTile(eqc);
+        characterTile.setId("overviewbuttons");
         int index = operations.getChildren().size() - 2;
         operations.getChildren().add(index,characterTile);
         lijst.add(characterTile);

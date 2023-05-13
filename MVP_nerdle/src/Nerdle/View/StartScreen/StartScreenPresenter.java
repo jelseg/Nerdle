@@ -43,8 +43,6 @@ public class StartScreenPresenter {
                     // // do nothing, if toURL-conversion fails, program can continue
                 }
                 mmSv.getScene().getWindow().sizeToScene();
-                //mmSv.getScene().getWindow().setX(uiSettings.getResX()/10);
-                //mmSv.getScene().getWindow().setY(uiSettings.getResY()/10);
                 mmSv.getScene().getWindow().setHeight(5 * uiSettings.getResY()/10);
                 mmSv.getScene().getWindow().setWidth(5 * uiSettings.getResX()/10);
                 mmSv.getScene().getWindow().centerOnScreen();

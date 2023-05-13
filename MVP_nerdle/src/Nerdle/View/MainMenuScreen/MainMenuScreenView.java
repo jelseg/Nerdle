@@ -25,6 +25,7 @@ public class MainMenuScreenView extends GridPane {
         settings=new Button("Settings");
         about=new Button("About");
         exit =new Button("Close");
+
     }
     private void layoutNodes(){
         this.setHgap(10);
