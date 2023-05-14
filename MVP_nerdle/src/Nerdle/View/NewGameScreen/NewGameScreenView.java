@@ -29,6 +29,7 @@ public class NewGameScreenView extends GridPane {
         initialiseNodes();
         layoutNodes();
         getStylesheets().add("stylesheets/Buttons.css");
+        getStylesheets().add("stylesheets/Text-field.css");
     }
 
     private void initialiseNodes(){

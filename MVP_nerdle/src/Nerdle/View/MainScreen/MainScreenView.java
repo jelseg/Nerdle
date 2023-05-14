@@ -1,15 +1,14 @@
 package Nerdle.View.MainScreen;
 
 import Nerdle.Model.Difficulty;
-import Nerdle.View.MenuBarScreen.MenuBarPresenter;
 import Nerdle.View.MenuBarScreen.MenuBarView;
 import Nerdle.View.UISettings;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.layout.BorderPane;
+import javafx.geometry.Side;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 public class MainScreenView extends BorderPane {
 
@@ -28,10 +27,9 @@ public class MainScreenView extends BorderPane {
 
     private void initialiseNodes() {
 
-        this.guessesView =new GuessesView(uiSettings, Difficulty.NORMAL.getComboLength(), Difficulty.NORMAL.getnTries());
+        this.guessesView = new GuessesView(uiSettings, Difficulty.NORMAL.getComboLength(), Difficulty.NORMAL.getnTries());
         this.overzichtView = new OverzichtView(uiSettings);
         this.menuBarView = new MenuBarView(uiSettings);
-
 
     }
 
@@ -46,11 +44,10 @@ public class MainScreenView extends BorderPane {
 
     }
 
-    void initLayoutGuesses(int nGuesses, int guessLength){
-        guessesView = new GuessesView(uiSettings,nGuesses,guessLength);
+    void initLayoutGuesses(int nGuesses, int guessLength) {
+        guessesView = new GuessesView(uiSettings, nGuesses, guessLength);
         this.setCenter(guessesView);
     }
-
 
 
     GuessesView getGuessesView() {
@@ -61,6 +58,8 @@ public class MainScreenView extends BorderPane {
         return overzichtView;
     }
 
-    MenuBarView getMenuBarView(){return menuBarView;}
+    MenuBarView getMenuBarView() {
+        return menuBarView;
+    }
 
 }
