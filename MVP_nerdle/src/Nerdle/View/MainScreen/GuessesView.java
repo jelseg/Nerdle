@@ -53,7 +53,12 @@ public class GuessesView extends GridPane {
 
     GuessesTile getElement(int i, int j) {
         //to be filled in
-        return guessesArray[j][i];
+        if (j < guessLength && i < nGuesses) {
+            return guessesArray[j][i];
+        }
+        else {
+            return new GuessesTile();
+        }
     }
 
     public GuessesTile[][] getGuessesArray() {
