@@ -14,7 +14,7 @@ public class UISettings {
     public static final char FILE_SEPARATOR = System.getProperties().getProperty("file.separator").charAt(0);
     private String ApplicationName;
     private String homeDir;
-    private String defaultCss = "themes02.css";
+    private String defaultCss = "Default_style.css";
     private Path styleSheetPath = Paths.get("resources"+FILE_SEPARATOR+"stylesheets"+FILE_SEPARATOR+defaultCss);
     private Path AboutImagePath = Paths.get("resources"+FILE_SEPARATOR+"images"+FILE_SEPARATOR+"Nerdle_logo_backdrop.png");
     private Path applicationIconPath = Paths.get("resources"+FILE_SEPARATOR+"images"+FILE_SEPARATOR+"Nerdle_logo_backdrop.png");

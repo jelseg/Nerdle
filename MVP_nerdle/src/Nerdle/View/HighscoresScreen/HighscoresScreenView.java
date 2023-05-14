@@ -28,7 +28,6 @@ public class HighscoresScreenView extends BorderPane {
         table.setEditable(false);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-
     }
 
     private void layoutNodes(){

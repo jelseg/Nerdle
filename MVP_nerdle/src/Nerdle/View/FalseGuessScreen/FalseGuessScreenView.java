@@ -1,9 +1,6 @@
 package Nerdle.View.FalseGuessScreen;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.*;
 
@@ -13,7 +10,6 @@ public class FalseGuessScreenView extends BorderPane {
     private Button button;
 
     public FalseGuessScreenView() {
-        getStylesheets().add("stylesheets/Buttons.css");
         initialiseNodes();
         layoutNodes();
     }

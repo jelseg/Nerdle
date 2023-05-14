@@ -21,7 +21,6 @@ public class AboutScreenView extends BorderPane {
         this.uiSettings = uiSettings;
         initialiseNodes();
         layoutNodes();
-        getStylesheets().add("stylesheets/Buttons.css");
     }
 
     private void initialiseNodes() {

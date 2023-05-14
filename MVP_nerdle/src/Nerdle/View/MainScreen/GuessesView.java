@@ -49,6 +49,7 @@ public class GuessesView extends GridPane {
                 //to be filled in
             }
         }
+        setStyle("-fx-background-color: rgba(0,100,100,0.0)");
     }
 
     GuessesTile getElement(int i, int j) {

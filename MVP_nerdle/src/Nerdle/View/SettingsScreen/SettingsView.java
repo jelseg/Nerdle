@@ -18,7 +18,6 @@ public class SettingsView extends BorderPane  {
         this.uiSettings = uiSettings;
         initialiseNodes();
         layoutNodes();
-        getStylesheets().add("stylesheets/Buttons.css");
     }
 
     private void initialiseNodes() {

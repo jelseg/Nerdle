@@ -26,7 +26,7 @@ public class MVPMain extends Application {
                 // do nothing, if toURL-conversion fails, program can continue
             }
         }
-        scene.getStylesheets().add("stylesheets/Buttons.css");
+        scene.getStylesheets().add("stylesheets/Default_style.css");
         primaryStage.setScene(scene);
         primaryStage.setHeight(uiSettings.getLowestRes() / 4);
         primaryStage.setWidth(uiSettings.getLowestRes() / 4);

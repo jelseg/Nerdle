@@ -3,14 +3,12 @@ package Nerdle.View.NewGameScreen;
 import Nerdle.Model.Difficulty;
 import Nerdle.View.UISettings;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 
 public class NewGameScreenView extends GridPane {
@@ -31,8 +29,6 @@ public class NewGameScreenView extends GridPane {
         this.uiSettings=uiSettings;
         initialiseNodes();
         layoutNodes();
-        getStylesheets().add("stylesheets/Buttons.css");
-        getStylesheets().add("stylesheets/Text-field.css");
     }
 
     private void initialiseNodes(){

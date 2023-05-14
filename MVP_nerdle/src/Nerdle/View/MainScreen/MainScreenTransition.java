@@ -12,58 +12,43 @@ import javafx.util.Duration;
 public class MainScreenTransition {
     private MainScreenView view;
     private ImageView imageView;
+    private ImageView congrats;
 
     public MainScreenTransition(MainScreenView view) {
         this.view = view;
 
         imageView = new ImageView(new Image("images/confetti.gif"));
-        view.getChildren().add(imageView);
+        congrats = new ImageView(new Image("images/congratulations.png"));
+        view.getChildren().addAll(imageView,congrats);
     }
 
     public void play() {
 
         double targetWidth = view.getWidth() / 2;
         double targetHeight = view.getHeight() / 2;
-        double targetX = (view.getWidth() - targetWidth) / 2;
-        double targetY = (view.getHeight() - targetHeight) / 2;
+        double targetX = (view.getWidth() - targetWidth);
+        double targetY = (view.getHeight() - targetHeight);
 
         imageView.setViewport(new Rectangle2D(0, 0, imageView.getImage().getWidth(), imageView.getImage().getHeight()));
-        imageView.setX(targetX);
-        imageView.setY(targetY);
+        imageView.setX(targetX/2);
+        imageView.setY(targetY/8);
 
-//        double targetWidth = view.getWidth() / 2;
-//        double targetHeight = view.getHeight() / 2;
-//        double targetX = (view.getWidth() - targetWidth) / 2;
-//        double targetY = (view.getHeight() - targetHeight) / 2;
-//
-//        imageView.setViewport(new Rectangle2D(0, 0, imageView.getImage().getWidth(), imageView.getImage().getHeight()));
-//        imageView.setX(targetX);
-//        imageView.setY(targetY);
-//
-//        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(5), imageView);
-//        scaleTransition.setToX(0.5);
-//        scaleTransition.setToY(0.5);
-//
-//        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(5), imageView);
-//        translateTransition.setByX(-380);
-//        translateTransition.setByY(-200);
-//
-//        RotateTransition rotateTransition = new RotateTransition();
-//        rotateTransition.setNode(imageView);
-//        rotateTransition.setDuration(Duration.seconds(5));
-//        rotateTransition.setByAngle(360);
-//        rotateTransition.setCycleCount(2);
-//        rotateTransition.setInterpolator(Interpolator.LINEAR);
-//
-//        translateTransition.play();
-//
-//        translateTransition.setOnFinished(event -> {
-//            scaleTransition.play();
-//        });
-//        scaleTransition.setOnFinished(event -> {
-//            rotateTransition.play();
-//        });
+        congrats.setViewport(new Rectangle2D(0, 0, congrats.getImage().getWidth(), congrats.getImage().getHeight()));
+        congrats.setX(targetX/7);
+        congrats.setLayoutY(-400);
 
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(5), congrats);
+        scaleTransition.setToX(1.3);
+        scaleTransition.setToY(1.3);
+
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(3), congrats);
+        translateTransition.setToY(targetY);
+
+        translateTransition.play();
+
+        translateTransition.setOnFinished(event -> {
+            scaleTransition.play();
+        });
     }
 }
 

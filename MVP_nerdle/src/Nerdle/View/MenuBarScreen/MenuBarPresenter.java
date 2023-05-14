@@ -189,7 +189,7 @@ public class MenuBarPresenter {
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
                 aboutScreenView.getScene().getWindow().setHeight(uiSettings.getResY() / 2);
-                aboutScreenView.getScene().getWindow().setWidth(uiSettings.getResX() / 2);
+                aboutScreenView.getScene().getWindow().setWidth(uiSettings.getResX() / 1.5);
                 if (uiSettings.styleSheetAvailable()) {
                     aboutScreenView.getScene().getStylesheets().removeAll();
                     try {

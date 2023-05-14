@@ -1,0 +1,49 @@
+#overviewbuttons:hover{
+    -fx-cursor: HAND;
+    -fx-rotate: 3;
+    -fx-effect: dropshadow(one-pass-box,grey,10,0.3,3,3);
+}
+
+.button {
+    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, white 100%),
+            radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,1;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+}
+
+.button:hover{
+    -fx-cursor: HAND;
+    -fx-effect: dropshadow(one-pass-box,grey,10,0.3,3,3);
+}
+
+.text-field, .combo-box{
+    -fx-border-width: 3px;
+    -fx-border-color: gray;
+    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#d6d6d6 50%, white 100%),
+            radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+}
+
+.root{
+    -fx-background-image: url("../images/Nerdle_background.png");
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    /*-fx-background-repeat: repeat;*/
+}
+
+.window{
+    -fx-background-image: url("../images/Nerdle_background.png");
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+}
+
+.label{
+    -fx-font-size: 18px;
+}

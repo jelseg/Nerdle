@@ -71,6 +71,14 @@ public class MainMenuScreenPresenter {
                 newGameStage.setScene(new Scene(newGameView));
                 newGameStage.setX(view.getScene().getWindow().getX()+50);
                 newGameStage.setY(view.getScene().getWindow().getY()+50);
+                if (uiSettings.styleSheetAvailable()) {
+                    newGameStage.getScene().getStylesheets().removeAll();
+                    try {
+                        newGameStage.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                    } catch (MalformedURLException ex) {
+                        // do nothing, if toURL-conversion fails, program can continue
+                    }
+                }
                 newGameStage.showAndWait();
 
             }
@@ -96,8 +104,16 @@ public class MainMenuScreenPresenter {
                 aboutStage.initModality(Modality.APPLICATION_MODAL);
                 aboutStage.setTitle(uiSettings.getApplicationName() + " - About");
                 aboutStage.setScene(new Scene(aboutScreenView));
-                aboutStage.setX(view.getScene().getWindow().getX() + 100);
-                aboutStage.setY(view.getScene().getWindow().getY() + 100);
+                aboutStage.setX(view.getScene().getWindow().getX());
+                aboutStage.setY(view.getScene().getWindow().getY());
+                if (uiSettings.styleSheetAvailable()) {
+                    aboutStage.getScene().getStylesheets().removeAll();
+                    try {
+                        aboutStage.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                    } catch (MalformedURLException ex) {
+                        // do nothing, if toURL-conversion fails, program can continue
+                    }
+                }
                 aboutStage.showAndWait();
             }
         });
@@ -113,8 +129,8 @@ public class MainMenuScreenPresenter {
                 Scene scene = new Scene(rulesScreenView);
                 rulesScreenStage.setScene(scene);
                 rulesScreenStage.setTitle(uiSettings.getApplicationName() + " - Rules");
-                rulesScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
-                rulesScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
+                rulesScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 20);
+                rulesScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 20);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         rulesScreenStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
@@ -149,8 +165,8 @@ public class MainMenuScreenPresenter {
                 Scene scene = new Scene(settingsView);
                 settingsStage.setScene(scene);
                 settingsStage.setTitle(uiSettings.getApplicationName() + " - Settings");
-                settingsStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
-                settingsStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
+                settingsStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 20);
+                settingsStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 20);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         settingsStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
@@ -159,8 +175,8 @@ public class MainMenuScreenPresenter {
                     }
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
-                settingsView.getScene().getWindow().setHeight(7 * uiSettings.getResY() / 10);
-                settingsView.getScene().getWindow().setWidth(7 * uiSettings.getResX() / 10);
+                settingsView.getScene().getWindow().setHeight(uiSettings.getResY()/2);
+                settingsView.getScene().getWindow().setWidth(uiSettings.getResX()/1.5);
                 if (uiSettings.styleSheetAvailable()) {
                     settingsStage.getScene().getStylesheets().removeAll();
                     try {
