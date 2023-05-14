@@ -44,7 +44,7 @@ public class Nerdle {
 
         answer = new Answer(difficulty);
         foundIt = false;
-        overzicht = new Overzicht();
+        overzicht = new Overzicht(difficulty);
     }
 
     /**
@@ -66,7 +66,7 @@ public class Nerdle {
 
         answer = new Answer(difficulty);
         foundIt = false;
-        overzicht = new Overzicht();
+        overzicht = new Overzicht(difficulty);
 
         this.user = user;
         loadSaveGame();

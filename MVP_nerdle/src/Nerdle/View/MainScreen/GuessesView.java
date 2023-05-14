@@ -20,8 +20,8 @@ public class GuessesView extends GridPane {
 
     public GuessesView(UISettings uiSettings, int nGuesses, int guessLength) {
         this.uiSettings = uiSettings;
-        this.nGuesses = Difficulty.NORMAL.getnTries();
-        this.guessLength = Difficulty.NORMAL.getComboLength();
+        this.nGuesses = nGuesses;
+        this.guessLength = guessLength;
         initialiseNodes();
         layoutNodes();
     }
@@ -53,7 +53,12 @@ public class GuessesView extends GridPane {
 
     GuessesTile getElement(int i, int j) {
         //to be filled in
-        return guessesArray[j][i];
+        if (j < guessLength && i < nGuesses) {
+            return guessesArray[j][i];
+        }
+        else {
+            return new GuessesTile();
+        }
     }
 
     public GuessesTile[][] getGuessesArray() {

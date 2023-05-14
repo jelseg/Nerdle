@@ -16,7 +16,7 @@ public class Answer extends Combination{
     //static final String ALL_ANSWERS_FILE = "resources" + File.separator + "other" + File.separator + "answers"+
             //File.separator + "allAnswers_%d.txt";
     // id:answer
-    static final String ALL_ANSWERS_FORMAT = "%012d;%s%n";
+    static final String ALL_ANSWERS_FORMAT = "%d;%s%n";
 
     //replace %s by difficulty (=> one file per difficulty)
     private static final String ANSWER_FILE = "resources" + File.separator + "other" + File.separator + "answers"+
@@ -253,6 +253,7 @@ public class Answer extends Combination{
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(answerFile,true))){
             //formater.format(ANSWER_FORMAT,LocalDate.now().format(Nerdle.DATE_FORMAT),id,conbinationStr);
             writer.write(String.format(ANSWER_FORMAT,difficulty,id,conbinationStr));
+            writer.newLine();
         }
         catch (IOException ioe){
             throw new NerdleException("A problem occurred trying to save today's answer.",ioe);
@@ -275,6 +276,6 @@ public class Answer extends Combination{
      */
     static String getAllAnswerFile(Difficulty difficulty){
         return "resources" + File.separator + "other" + File.separator + "answers"+
-                File.separator + "allAnswers_" + difficulty.getComboLength() + ".txt";
+                File.separator + "allAnswers_" + difficulty.toString() + ".txt";
     }
 }

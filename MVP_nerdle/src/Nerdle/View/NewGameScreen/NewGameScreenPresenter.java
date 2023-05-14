@@ -44,9 +44,10 @@ public class NewGameScreenPresenter {
     private void startNewGame(String username){
 
         User userChoosen = new User(username);
-        Nerdle nerdleModel = new Nerdle(userChoosen, Difficulty.NORMAL);
+        Difficulty difficulty = view.getDifficultyComboBox().getValue();
+        Nerdle nerdleModel = new Nerdle(userChoosen, difficulty);
 
-        MainScreenView mainScreenView=new MainScreenView(uiSettings);
+        MainScreenView mainScreenView=new MainScreenView(uiSettings,difficulty);
         MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(nerdleModel,mainScreenView,uiSettings);
 
         view.getScene().getWindow().hide();

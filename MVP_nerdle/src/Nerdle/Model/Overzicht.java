@@ -5,13 +5,20 @@ package Nerdle.Model;
  * The colors are based on the previous guesses
  */
 public class Overzicht {
-    public static final int N_POSSIBILITIES = 15;
+    private int nPossibilities = 15;
 
     private EquationCharacter[] possibilities;
 
-    public Overzicht(){
+    public Overzicht(Difficulty difficulty){
 
-        possibilities = new EquationCharacter[N_POSSIBILITIES];
+        if(difficulty == Difficulty.SUPER_EASY){
+            nPossibilities = 13;
+        }
+        else{
+            nPossibilities = 15;
+        }
+
+        possibilities = new EquationCharacter[nPossibilities];
 
         for (int i = 0; i < 10; i++) {
             possibilities[i] = new EquationCharacter(i);
@@ -19,9 +26,14 @@ public class Overzicht {
 
         possibilities[10] = new EquationCharacter( EquationCharacter.Operation.PLUS);
         possibilities[11] = new EquationCharacter(EquationCharacter.Operation.MINUS);
-        possibilities[12] = new EquationCharacter(EquationCharacter.Operation.MULTIPLY);
-        possibilities[13] = new EquationCharacter(EquationCharacter.Operation.DIVIDE);
-        possibilities[14] = new EquationCharacter(EquationCharacter.Operation.EQUALS);
+        int j = 12;
+        if (difficulty != Difficulty.SUPER_EASY) {
+            possibilities[j] = new EquationCharacter(EquationCharacter.Operation.MULTIPLY);
+            j++;
+            possibilities[j] = new EquationCharacter(EquationCharacter.Operation.DIVIDE);
+            j++;
+        }
+        possibilities[j] = new EquationCharacter(EquationCharacter.Operation.EQUALS);
     }
 
     /**
@@ -80,4 +92,6 @@ public class Overzicht {
         }
         return s1 + "\n" + s2;
     }
+
+    public int getnPossibilities(){return nPossibilities;}
 }

@@ -303,11 +303,13 @@ public class MainScreenPresenter {
             }
         }
 
-        int i = allGuesses.size();
-        EquationCharacter[] curChars = currentguess.getCharacters();
-        for (int j=0; j < curChars.length; j++){
-            gv.getElement(i,j).changeCharacter(curChars[j]);
-            //System.out.println(j + curChars[j].getOperation().toString());
+        if (!model.isOver()) {
+            int i = allGuesses.size();
+            EquationCharacter[] curChars = currentguess.getCharacters();
+            for (int j = 0; j < curChars.length; j++) {
+                gv.getElement(i, j).changeCharacter(curChars[j]);
+                //System.out.println(j + curChars[j].getOperation().toString());
+            }
         }
 
     }

@@ -194,7 +194,7 @@ public class Combination {
 
         // to make sure if your combination has a duplicate character and other has this character only once
         // the color will be set to purple for only one
-        boolean[] otherUsed = new boolean[Difficulty.NORMAL.getComboLength()];
+        boolean[] otherUsed = new boolean[difficulty.getComboLength()];
 
         boolean allCorrect = true;
 
