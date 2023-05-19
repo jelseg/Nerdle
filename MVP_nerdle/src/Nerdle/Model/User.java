@@ -25,11 +25,13 @@ public class User {
      * totScore is Integere.MIN_VALUE until the first time a method for getting scores is called
      */
     private int totScore;
+
+    private Map<Difficulty,Double> avgAttempts;
     /**
      * avgAttempts is Double.MIN_VALUE until the first time a method for getting scores is called
      * is Double.MAX_VALUE if the user hasn't finished a game yet
      */
-    private double avgAttempts; //note: is Integer.MAX_VALUE when the user hasn't finished any game
+    private double totAvgAttempts; //note: is Integer.MAX_VALUE when the user hasn't finished any game
 
     /**
      * class to parse one line of the score file
@@ -111,7 +113,7 @@ public class User {
     public User(String name){
         this.name = name;
         totScore = Integer.MIN_VALUE;
-        avgAttempts = Double.MIN_VALUE;
+        totAvgAttempts = Double.MIN_VALUE;
 
         File scoreFile = getScoreFile();
 
@@ -144,10 +146,16 @@ public class User {
     }
 
     public double getAvgAttempts() throws NerdleException{
-        if (avgAttempts == Double.MIN_VALUE){
+        if (totAvgAttempts == Double.MIN_VALUE){
             loadScore();
         }
-        return avgAttempts;
+        return totAvgAttempts;
+    }
+    public double getAvgAttempts(Difficulty difficulty) throws NerdleException{
+        if (totAvgAttempts == Double.MIN_VALUE){
+            loadScore();
+        }
+        return avgAttempts.get(difficulty);
     }
 
     /**
@@ -158,8 +166,12 @@ public class User {
 
         //initialise scores Map
         scores = new EnumMap<Difficulty, Integer>(Difficulty.class);
+        avgAttempts = new EnumMap<Difficulty, Double>(Difficulty.class);
+        Map<Difficulty,Integer> nGames = new EnumMap<Difficulty, Integer>(Difficulty.class);
         for(Difficulty diff:Difficulty.values()){
             scores.put(diff,0);
+            avgAttempts.put(diff,0.0);
+            nGames.put(diff,0);
         }
 
         //init value average calculation
@@ -170,17 +182,22 @@ public class User {
             String line;
             while ((line = reader.readLine()) != null && !line.equals("")){
                 ScoreRecord record = new ScoreRecord(line);
-                scores.replace(record.getDifficulty(),scores.get(record.getDifficulty()) + record.getScore());
+                Difficulty difficulty = record.getDifficulty();
+                scores.replace(difficulty,scores.get(difficulty) + record.getScore());
                 if (record.getnAttempts() == -1){
-                    // if lost -> nattemps == -1
-                    totAttemps += record.getDifficulty().getnTries()+1;
+                    // if lost -> nAttempts == -1
+                    totAttemps += difficulty.getnTries()+1;
+                    avgAttempts.replace(difficulty,avgAttempts.get(difficulty) + difficulty.getnTries()+1.0);
                 }else {
                     totAttemps += record.getnAttempts();
+                    avgAttempts.replace(difficulty,avgAttempts.get(difficulty) + record.getnAttempts());
                 }
                 totGames++;
+                nGames.replace(difficulty,nGames.get(difficulty) + 1);
             }
         } catch (IOException exception){
             scores = null;
+            avgAttempts = null;
             throw new NerdleException("Could not read scores for " + name,exception);
         }
 
@@ -190,10 +207,22 @@ public class User {
         //calculate average
         if(totGames == 0){
             //give a default value when the player hasn't finished a game yet
-            avgAttempts = Double.MAX_VALUE;
+            totAvgAttempts = Double.MAX_VALUE;
         }
         else {
-            avgAttempts = (double)totAttemps/totGames;
+            totAvgAttempts = (double)totAttemps/totGames;
+        }
+
+        //calculate average for each difficulty:
+        for(Difficulty diff:Difficulty.values()) {
+            double sum = avgAttempts.get(diff);
+            int games = nGames.get(diff);
+            if (games == 0){
+                avgAttempts.replace(diff,Double.MAX_VALUE);
+            }
+            else {
+                avgAttempts.replace(diff,sum/games);
+            }
         }
     }
 

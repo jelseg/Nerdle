@@ -220,7 +220,7 @@ public class MainMenuScreenPresenter {
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
                 highscoresScreenView.getScene().getWindow().setHeight(uiSettings.getResY() / 2);
-                highscoresScreenView.getScene().getWindow().setWidth(uiSettings.getResX() / 4);
+                highscoresScreenView.getScene().getWindow().setWidth(uiSettings.getResX() / 3);
                 if (uiSettings.styleSheetAvailable()) {
                     highscoreStage.getScene().getStylesheets().removeAll();
                     try {
