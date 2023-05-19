@@ -13,8 +13,9 @@ public class Overzicht {
 
         if(difficulty == Difficulty.SUPER_EASY){
             nPossibilities = 13;
-        }
-        else{
+        } else if (difficulty == Difficulty.MODULUS) {
+            nPossibilities = 16;
+        } else{
             nPossibilities = 15;
         }
 
@@ -34,6 +35,10 @@ public class Overzicht {
             j++;
         }
         possibilities[j] = new EquationCharacter(EquationCharacter.Operation.EQUALS);
+        j++;
+        if (difficulty == Difficulty.MODULUS){
+            possibilities[j] = new EquationCharacter(EquationCharacter.Operation.MOD);
+        }
     }
 
     /**

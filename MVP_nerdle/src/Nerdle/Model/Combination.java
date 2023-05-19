@@ -152,10 +152,13 @@ public class Combination {
         EquationCharacter.Operation lastOp = EquationCharacter.Operation.MULTIPLY;
 
         for(EquationCharacter c: chars){
-            if(c.getOperation()== EquationCharacter.Operation.MULTIPLY || c.getOperation()== EquationCharacter.Operation.DIVIDE){
+            if(c.getOperation()== EquationCharacter.Operation.MULTIPLY ||
+                    c.getOperation()== EquationCharacter.Operation.DIVIDE ||
+                    c.getOperation() == EquationCharacter.Operation.MOD){
                 switch(lastOp){
                     case MULTIPLY: tot *= currentNumb;break;
                     case DIVIDE: tot /= currentNumb;break;
+                    case MOD: tot %= currentNumb;break;
                 }
                 currentNumb = 0;
                 lastOp = c.getOperation();
@@ -169,6 +172,7 @@ public class Combination {
         switch(lastOp){
             case MULTIPLY: tot *= currentNumb;break;
             case DIVIDE: tot /= currentNumb;break;
+            case MOD: tot %= currentNumb;break;
         }
 
         return tot;
@@ -267,6 +271,7 @@ public class Combination {
             case '+': ops = EquationCharacter.Operation.PLUS; break;
             case '-': ops = EquationCharacter.Operation.MINUS; break;
             case '=': ops = EquationCharacter.Operation.EQUALS; break;
+            case '%': ops = EquationCharacter.Operation.MOD;break;
         }
         EquationCharacter eqc = null;
         if (ops == null){

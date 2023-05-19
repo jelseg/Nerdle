@@ -15,7 +15,7 @@ public class AnswerGenerator {
         //int length = 8;
         //Difficulty difficulty = Difficulty.NORMAL;
 
-        for(Difficulty difficulty: Difficulty.values()) {
+        for(Difficulty difficulty: new Difficulty[]{Difficulty.MODULUS}) {
             Overzicht overzicht = new Overzicht(difficulty);
             String answersFileName = Answer.getAllAnswerFile(difficulty);
 

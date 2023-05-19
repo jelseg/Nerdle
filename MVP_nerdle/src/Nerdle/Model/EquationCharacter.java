@@ -28,7 +28,7 @@ public class EquationCharacter {
     }
 
     public static enum Operation{
-        PLUS,MINUS,MULTIPLY,DIVIDE,EQUALS,NUMBER,EMPTY
+        PLUS,MINUS,MULTIPLY,DIVIDE,MOD,EQUALS,NUMBER,EMPTY
     }
 
     private CombinationColor color;
@@ -125,6 +125,7 @@ public class EquationCharacter {
             case MINUS: return "-";
             case DIVIDE: return "/";
             case MULTIPLY: return "x";
+            case MOD: return "%";
         }
 
         return " ";

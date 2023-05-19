@@ -171,7 +171,12 @@ public class User {
             while ((line = reader.readLine()) != null && !line.equals("")){
                 ScoreRecord record = new ScoreRecord(line);
                 scores.replace(record.getDifficulty(),scores.get(record.getDifficulty()) + record.getScore());
-                totAttemps += record.getnAttempts();
+                if (record.getnAttempts() == -1){
+                    // if lost -> nattemps == -1
+                    totAttemps += record.getDifficulty().getnTries()+1;
+                }else {
+                    totAttemps += record.getnAttempts();
+                }
                 totGames++;
             }
         } catch (IOException exception){

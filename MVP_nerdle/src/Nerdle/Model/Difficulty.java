@@ -4,7 +4,8 @@ package Nerdle.Model;
  * enum used to change the parameters of the game (comboLength and number of tries)
  */
 public enum Difficulty {
-    SUPER_EASY(6,8),EASY(6,6),NORMAL(8,6),HARD(10,6);
+    SUPER_EASY(6,8),EASY(6,6),NORMAL(8,6),
+    HARD(10,6),MODULUS(6,6);
 
     private int comboLength;
     private int nTries;

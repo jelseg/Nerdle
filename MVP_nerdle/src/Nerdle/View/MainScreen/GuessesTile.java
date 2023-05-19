@@ -44,6 +44,7 @@ public class GuessesTile extends ImageView {
                 case MINUS: builder.append("_minus"); break;
                 case DIVIDE: builder.append("_divide"); break;
                 case MULTIPLY: builder.append("_multiply"); break;
+                case MOD:builder.append("_modulus");break;
             }
 
             builder.append(".png");
