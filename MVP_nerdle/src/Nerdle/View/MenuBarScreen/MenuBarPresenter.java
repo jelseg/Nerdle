@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -236,6 +237,7 @@ public class MenuBarPresenter {
                 rulesScreenStage.showAndWait();
             }});
 
+        /*
         view.getNewgameMI().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -252,6 +254,23 @@ public class MenuBarPresenter {
                 newGameStage.setY(view.getScene().getWindow().getY()+50);
                 newGameStage.showAndWait();
 
+            }
+        });
+         */
+        view.getNewGameLabel().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                NewGameScreenView newGameView = new NewGameScreenView(uiSettings);
+                NewGameScreenPresenter newGameScreenPresenter = new NewGameScreenPresenter(newGameView,uiSettings,view.getScene());
+                Stage newGameStage = new Stage();
+                // set owner to window of this presenters view
+                newGameStage.initOwner(view.getScene().getWindow());
+                newGameStage.initModality(Modality.APPLICATION_MODAL);
+                newGameStage.setTitle(uiSettings.getApplicationName() + " - New game");
+                newGameStage.setScene(new Scene(newGameView));
+                newGameStage.setX(view.getScene().getWindow().getX()+50);
+                newGameStage.setY(view.getScene().getWindow().getY()+50);
+                newGameStage.showAndWait();
             }
         });
 
@@ -299,9 +318,32 @@ public class MenuBarPresenter {
             }
         });
 
+        /*
         view.getMainMenuMI().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                MainMenuScreenView mmSv=new MainMenuScreenView();
+                view.getScene().setRoot(mmSv);
+                MainMenuScreenPresenter mmSp=new MainMenuScreenPresenter(new MVPModel(),mmSv,uiSettings);
+                try {
+                    mmSv.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                } catch (MalformedURLException ex) {
+                    // // do nothing, if toURL-conversion fails, program can continue
+                }
+//                mmSv.getScene().getWindow().sizeToScene();
+//                mmSv.getScene().getWindow().setX(uiSettings.getResX()/20);
+//                mmSv.getScene().getWindow().setY(uiSettings.getResY()/20);
+//                mmSv.getScene().getWindow().setHeight(5 * uiSettings.getResY()/10);
+//                mmSv.getScene().getWindow().setWidth(5 * uiSettings.getResX()/10);
+//                mmSp.windowsHandler();
+                //updateView();
+                mmSv.getScene().getWindow().centerOnScreen();
+                mmSp.windowsHandler();
+            }
+        });*/
+        view.getMainMenuLabel().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
                 MainMenuScreenView mmSv=new MainMenuScreenView();
                 view.getScene().setRoot(mmSv);
                 MainMenuScreenPresenter mmSp=new MainMenuScreenPresenter(new MVPModel(),mmSv,uiSettings);

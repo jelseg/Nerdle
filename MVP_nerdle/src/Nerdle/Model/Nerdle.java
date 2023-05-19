@@ -231,10 +231,10 @@ public class Nerdle {
     /**
      * added this extra function to be used when loading a saved game (should not be saved again when loading a
      * finished game)
-     * @param saveIfEnd True -> if the CurrentGuess finishes the game, it will save the game and adds the score
+     * @param save True -> if the CurrentGuess is legal, it will save the game and, when the game is finished, adds the score
      * @return true if the current guess was added to the guesses
      */
-    private boolean enterCurrentGuess(boolean saveIfEnd){
+    private boolean enterCurrentGuess(boolean save){
         if (currentGuess.isLegal() && getCurrentGuessNumber() < difficulty.getnTries()) {
             foundIt = currentGuess.compare(answer);
             guesses.add(currentGuess);
@@ -242,8 +242,10 @@ public class Nerdle {
             //CurrentGuessNumber++;
             currentGuess = new Combination(difficulty);
 
-            if(user != null && isOver() && saveIfEnd){
-                user.saveResult(answer,difficulty,foundIt?getCurrentGuessNumber():getCurrentGuessNumber()+1);
+            if(user != null && save){
+                if(isOver()) {
+                    user.saveResult(answer, difficulty, foundIt ? getCurrentGuessNumber() : getCurrentGuessNumber() + 1);
+                }
                 saveGame();
             }
             return true;
