@@ -1,11 +1,20 @@
-Guess the NERDLE in 6 tries. After each guess, the color of the tiles will change to show how close your guess was to the solution. Watch a video.
+The goal of NERDLE is to guess the digits and operation characters of a mathematical equation.
 
-Each guess is a calculation.
-You can use 0 1 2 3 4 5 6 7 8 9 + - * / or =.
-It must contain one “=”.
-It must only have a number to the right of the “=”, not another calculation.
+There are 5 types of difficulties:
+    * super easy: 8 tries, 6 characters, + -
+    * easy: 6 tries, 6 characters, + - x /
+    * normal: 6 tries, 8 characters, + - x /
+    * hard: 6 tries, 10 characters, + - x /
+    * modulus: 6 tries, 6 characters, + - x / %
+
+Each guess must contain one "=", you can have an equation on both sides of the "="
 Standard order of operations applies, so calculate * and / before + and - eg. 3+2*5=13 not 25!
+
+After each guess the game will calculate how well you are doing and change the different tiles accordingly:
+    * black: character does not appear in the solution
+    * purple: character does appear in the solution, but on another spot
+    * green: character appears in the equation and is on the correct spot
 
 If your guess includes, say, two 1s but the answer has only one, you will get one color tile and one black.
 
-Tiles will only go green if the number is in the correct position or when a full guess is rearranged as a winning commutative answer.
+Good luck!

@@ -46,21 +46,7 @@ public class MainMenuScreenPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
 
-                /*
 
-                NewGameScreenView newGameView = new NewGameScreenView();
-                //NewUserScreenView newUserScreenView = new NewUserScreenView();
-                NewUserScreenView newUserScreenView = newGameView.getNewUserView();
-                NewUserScreenPresenter newUserScreenPresenter = new NewUserScreenPresenter(model, newUserScreenView, uiSettings);
-                Stage newUserStage = new Stage();
-                newUserStage.initOwner(view.getScene().getWindow());
-                newUserStage.initModality(Modality.APPLICATION_MODAL);
-                //newUserStage.setScene(new Scene(newUserScreenView));
-                newUserStage.setScene(new Scene(newGameView));
-                newUserStage.setX(view.getScene().getWindow().getX() + 100);
-                newUserStage.setY(view.getScene().getWindow().getY() + 100);
-                newUserStage.showAndWait();
-                */
                 NewGameScreenView newGameView = new NewGameScreenView(uiSettings);
                 NewGameScreenPresenter newGameScreenPresenter = new NewGameScreenPresenter(newGameView,uiSettings,view.getScene());
                 Stage newGameStage = new Stage();
@@ -69,8 +55,6 @@ public class MainMenuScreenPresenter {
                 newGameStage.initModality(Modality.APPLICATION_MODAL);
                 newGameStage.setTitle(uiSettings.getApplicationName() + " - New game");
                 newGameStage.setScene(new Scene(newGameView));
-                newGameStage.setX(view.getScene().getWindow().getX()+50);
-                newGameStage.setY(view.getScene().getWindow().getY()+50);
                 if (uiSettings.styleSheetAvailable()) {
                     newGameStage.getScene().getStylesheets().removeAll();
                     try {
@@ -79,20 +63,16 @@ public class MainMenuScreenPresenter {
                         // do nothing, if toURL-conversion fails, program can continue
                     }
                 }
+                double screenWidth = view.getScene().getWindow().getWidth();
+                double screenHeight = view.getScene().getWindow().getHeight();
+                double x = (screenWidth-screenWidth/5) ;
+                double y = (screenHeight/2);
+                newGameStage.setX(x);
+                newGameStage.setY(y);
                 newGameStage.showAndWait();
 
             }
         });
-
-
-//
-////                msView.getScene().getWindow().setX(uiSettings.getResX() / 20);
-////                msView.getScene().getWindow().setY(uiSettings.getResY() / 20);
-////                msView.getScene().getWindow().setHeight(9 * uiSettings.getResY() / 10);
-////                msView.getScene().getWindow().setWidth(9 * uiSettings.getResX() / 10);
-//                mainScreenPresenter.windowsHandler();
-//            }
-//        });
 
         view.getAbout().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -104,8 +84,8 @@ public class MainMenuScreenPresenter {
                 aboutStage.initModality(Modality.APPLICATION_MODAL);
                 aboutStage.setTitle(uiSettings.getApplicationName() + " - About");
                 aboutStage.setScene(new Scene(aboutScreenView));
-                aboutStage.setX(view.getScene().getWindow().getX());
-                aboutStage.setY(view.getScene().getWindow().getY());
+                aboutStage.setX(view.getScene().getWindow().getWidth()-view.getScene().getWindow().getWidth()/3);
+                aboutStage.setY(view.getScene().getWindow().getHeight()/3);
                 if (uiSettings.styleSheetAvailable()) {
                     aboutStage.getScene().getStylesheets().removeAll();
                     try {
@@ -129,8 +109,8 @@ public class MainMenuScreenPresenter {
                 Scene scene = new Scene(rulesScreenView);
                 rulesScreenStage.setScene(scene);
                 rulesScreenStage.setTitle(uiSettings.getApplicationName() + " - Rules");
-                rulesScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 20);
-                rulesScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 20);
+                rulesScreenStage.setX(view.getScene().getWindow().getX() );
+                rulesScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 40);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         rulesScreenStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
@@ -165,8 +145,8 @@ public class MainMenuScreenPresenter {
                 Scene scene = new Scene(settingsView);
                 settingsStage.setScene(scene);
                 settingsStage.setTitle(uiSettings.getApplicationName() + " - Settings");
-                settingsStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 20);
-                settingsStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 20);
+                settingsStage.setX(view.getScene().getWindow().getX() );
+                settingsStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 40);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         settingsStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
@@ -176,7 +156,7 @@ public class MainMenuScreenPresenter {
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
                 settingsView.getScene().getWindow().setHeight(uiSettings.getResY()/2);
-                settingsView.getScene().getWindow().setWidth(uiSettings.getResX()/1.5);
+                settingsView.getScene().getWindow().setWidth(uiSettings.getResX()/1.8);
                 if (uiSettings.styleSheetAvailable()) {
                     settingsStage.getScene().getStylesheets().removeAll();
                     try {
@@ -209,8 +189,8 @@ public class MainMenuScreenPresenter {
                 Scene scene = new Scene(highscoresScreenView);
                 highscoreStage.setScene(scene);
                 highscoreStage.setTitle(uiSettings.getApplicationName() + " - Highscores");
-                highscoreStage.setX(view.getScene().getWindow().getX() + 10);
-                highscoreStage.setY(view.getScene().getWindow().getY() + 10);
+                highscoreStage.setX(view.getScene().getWindow().getWidth()-view.getScene().getWindow().getWidth()/3);
+                highscoreStage.setY( view.getScene().getWindow().getHeight()/3);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         highscoreStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));

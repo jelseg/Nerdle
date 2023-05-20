@@ -47,3 +47,11 @@
 .label{
     -fx-font-size: 18px;
 }
+
+.text-area{
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-font-family: "Calibri";
+}

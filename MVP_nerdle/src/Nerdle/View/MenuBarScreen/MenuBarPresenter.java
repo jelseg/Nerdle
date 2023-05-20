@@ -61,8 +61,8 @@ public class MenuBarPresenter {
                 Scene scene = new Scene(settingsView);
                 settingsStage.setScene(scene);
                 settingsStage.setTitle(uiSettings.getApplicationName() + " - Settings");
-                settingsStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
-                settingsStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
+                settingsStage.setX(view.getScene().getWindow().getWidth()-view.getScene().getWindow().getWidth()/3);
+                settingsStage.setY( view.getScene().getWindow().getHeight()/3);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         settingsStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
@@ -179,8 +179,8 @@ public class MenuBarPresenter {
                 Scene scene = new Scene(aboutScreenView);
                 aboutScreenStage.setScene(scene);
                 aboutScreenStage.setTitle(uiSettings.getApplicationName() + " - About");
-                aboutScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
-                aboutScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
+                aboutScreenStage.setX(view.getScene().getWindow().getWidth()+view.getScene().getWindow().getWidth()/10);
+                aboutScreenStage.setY( view.getScene().getWindow().getHeight()/4);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         aboutScreenStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
@@ -189,8 +189,6 @@ public class MenuBarPresenter {
                     }
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
-                aboutScreenView.getScene().getWindow().setHeight(uiSettings.getResY() / 2);
-                aboutScreenView.getScene().getWindow().setWidth(uiSettings.getResX() / 1.5);
                 if (uiSettings.styleSheetAvailable()) {
                     aboutScreenView.getScene().getStylesheets().removeAll();
                     try {
@@ -212,8 +210,8 @@ public class MenuBarPresenter {
                 Scene scene = new Scene(rulesScreenView);
                 rulesScreenStage.setScene(scene);
                 rulesScreenStage.setTitle(uiSettings.getApplicationName()+ " - Rules");
-                rulesScreenStage.setX(view.getScene().getWindow().getX() + uiSettings.getResX() / 10);
-                rulesScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 10);
+                rulesScreenStage.setX(view.getScene().getWindow().getWidth()-view.getScene().getWindow().getWidth()/6);
+                rulesScreenStage.setY( view.getScene().getWindow().getHeight()/3);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         rulesScreenStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
@@ -268,8 +266,16 @@ public class MenuBarPresenter {
                 newGameStage.initModality(Modality.APPLICATION_MODAL);
                 newGameStage.setTitle(uiSettings.getApplicationName() + " - New game");
                 newGameStage.setScene(new Scene(newGameView));
-                newGameStage.setX(view.getScene().getWindow().getX()+50);
+                newGameStage.setX(view.getScene().getWindow().getX()+80);
                 newGameStage.setY(view.getScene().getWindow().getY()+50);
+                if (uiSettings.styleSheetAvailable()) {
+                    newGameStage.getScene().getStylesheets().removeAll();
+                    try {
+                        newGameStage.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+                    } catch (MalformedURLException ex) {
+                        // do nothing, if toURL-conversion fails, program can continue
+                    }
+                }
                 newGameStage.showAndWait();
             }
         });
@@ -280,13 +286,12 @@ public class MenuBarPresenter {
                 HighscoresScreenView highscoresScreenView=new HighscoresScreenView(uiSettings);
                 HighscoresScreenPresenter highscoresScreenPresenter=new HighscoresScreenPresenter(highscoresScreenView,uiSettings);
                 Stage highscoreStage=new Stage();
-                highscoreStage.setTitle("Highscores");
+                highscoreStage.setTitle(uiSettings.getApplicationName()+" - Highscores");
                 highscoreStage.initOwner(view.getScene().getWindow());
                 highscoreStage.initModality(Modality.APPLICATION_MODAL);
                 Scene scene = new Scene(highscoresScreenView);
                 highscoreStage.setScene(scene);
-                highscoreStage.setTitle(uiSettings.getApplicationName() + " - Highscores");
-                highscoreStage.setX(view.getScene().getWindow().getX() + 10);
+                highscoreStage.setX(view.getScene().getWindow().getX() + 40);
                 highscoreStage.setY(view.getScene().getWindow().getY() + 10);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
