@@ -3,6 +3,7 @@ package Nerdle.View.NewGameScreen;
 
 import Nerdle.Model.Difficulty;
 import Nerdle.Model.Nerdle;
+import Nerdle.Model.NerdleException;
 import Nerdle.Model.User;
 import Nerdle.View.MainScreen.MainScreenPresenter;
 import Nerdle.View.MainScreen.MainScreenView;
@@ -10,6 +11,7 @@ import Nerdle.View.UISettings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -23,7 +25,14 @@ public class NewGameScreenPresenter {
     private Scene mainScene;
 
     public NewGameScreenPresenter(NewGameScreenView view, UISettings uiSettings,Scene mainScene){
-        usersModel = User.getAllUsers();
+        try {
+            usersModel = User.getAllUsers();
+        }catch (NerdleException n){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Unable to load");
+            alert.setContentText(n.getMessage());
+            alert.showAndWait();
+        }
         this.view = view;
         this.uiSettings=uiSettings;
         this.mainScene = mainScene;

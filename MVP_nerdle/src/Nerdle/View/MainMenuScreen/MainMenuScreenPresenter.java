@@ -55,6 +55,8 @@ public class MainMenuScreenPresenter {
                 newGameStage.initModality(Modality.APPLICATION_MODAL);
                 newGameStage.setTitle(uiSettings.getApplicationName() + " - New game");
                 newGameStage.setScene(new Scene(newGameView));
+                newGameStage.setX(view.getScene().getWindow().getWidth()-view.getScene().getWindow().getWidth()/5);
+                newGameStage.setY(view.getScene().getWindow().getHeight()/2);
                 if (uiSettings.styleSheetAvailable()) {
                     newGameStage.getScene().getStylesheets().removeAll();
                     try {
@@ -63,12 +65,6 @@ public class MainMenuScreenPresenter {
                         // do nothing, if toURL-conversion fails, program can continue
                     }
                 }
-                double screenWidth = view.getScene().getWindow().getWidth();
-                double screenHeight = view.getScene().getWindow().getHeight();
-                double x = (screenWidth-screenWidth/5) ;
-                double y = (screenHeight/2);
-                newGameStage.setX(x);
-                newGameStage.setY(y);
                 newGameStage.showAndWait();
 
             }

@@ -2,6 +2,7 @@ package Nerdle.View.HighscoresScreen;
 
 import Nerdle.Model.Difficulty;
 import Nerdle.Model.HighScoreList;
+import Nerdle.Model.NerdleException;
 import Nerdle.Model.User;
 import Nerdle.View.UISettings;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -9,6 +10,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -97,9 +99,15 @@ public class HighscoresScreenPresenter {
 
         //tot average column
         averageColumn = new TableColumn<>("avg #att");
+        try {
         averageColumn.setCellValueFactory(
                 u -> new SimpleDoubleProperty(u.getValue().getAvgAttempts()).asObject()
-        );
+        );}catch (NerdleException n){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Loading attempts error");
+            alert.setContentText("Average attempts could not be loaded");
+            alert.showAndWait();
+        }
         averageColumn.setPrefWidth(0.5);
         //set formatting of the double value:
         averageColumn.setCellFactory(c -> new TableCell<>(){
@@ -118,9 +126,15 @@ public class HighscoresScreenPresenter {
 
         //tot scoreColumn
         scoreColum = new TableColumn<>("Total Score");
+        try {
         scoreColum.setCellValueFactory(
                 u -> new SimpleIntegerProperty(u.getValue().getScore()).asObject()
-        );
+        );}catch (NerdleException n){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error loading scores");
+            alert.setContentText("Scores could not be loaded");
+            alert.showAndWait();
+        }
 
         table.getColumns().addAll(nameColumn,averageColumn,scoreColum);
 
@@ -131,9 +145,15 @@ public class HighscoresScreenPresenter {
 
             //create column for average
             TableColumn<User,Double> currentCol = new TableColumn<>("Avg #att " + difficulty.toString());
+            try{
             currentCol.setCellValueFactory(
                     u -> new SimpleDoubleProperty(u.getValue().getAvgAttempts(difficulty)).asObject()
-            );
+            );} catch (NerdleException n){
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Unable to load");
+                alert.setContentText("The scores could not be loaded");
+                alert.showAndWait();
+            }
             currentCol.setPrefWidth(0.5);
             //set formatting of the double value:
             currentCol.setCellFactory(c -> new TableCell<>(){
@@ -158,9 +178,16 @@ public class HighscoresScreenPresenter {
 
             //score col
             TableColumn<User,Integer> cScoreCol = new TableColumn<>("Score " + difficulty);
-            cScoreCol.setCellValueFactory(
-                    u -> new SimpleIntegerProperty(u.getValue().getScore(difficulty)).asObject()
-            );
+            try {
+                cScoreCol.setCellValueFactory(
+                        u -> new SimpleIntegerProperty(u.getValue().getScore(difficulty)).asObject()
+                );
+            }catch (NerdleException n){
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error loading scores");
+                alert.setContentText("The scores could not be loaded");
+                alert.showAndWait();
+            }
 
             table.getColumns().add(cScoreCol);
             scoreColumns.put(difficulty,cScoreCol);
