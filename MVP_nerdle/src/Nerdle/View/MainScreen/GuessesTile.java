@@ -53,7 +53,7 @@ public class GuessesTile extends ImageView {
 
             //System.out.println(imagePath);
         }
-        Image image = new Image(imagePath);
+        Image image = new Image(imagePath,70,70,false,false);
         this.setImage(image);
 
 

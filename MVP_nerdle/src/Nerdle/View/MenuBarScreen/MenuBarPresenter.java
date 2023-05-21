@@ -93,75 +93,6 @@ public class MenuBarPresenter {
             }
         });
 
-        /*
-        view.getLoadItem().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Load Data File");
-                fileChooser.getExtensionFilters().addAll(
-                        new FileChooser.ExtensionFilter("Textfiles", "*.txt"),
-                        new FileChooser.ExtensionFilter("All Files", "*.*"));
-                File selectedFile = fileChooser.showOpenDialog(view.getScene().getWindow());
-                if ((selectedFile != null) ){ //^ (Files.isReadable(Paths.get(selectedFile.toURI())))) {
-                    try {
-                        List<String> input = Files.readAllLines(Paths.get(selectedFile.toURI()));
-                        // begin implementeren ingelezen gegevens doorgeven aan model
-                        for (int i = 0; i < input.size(); i++) {
-                            String inputline = input.get(i);
-                            String[] elementen = inputline.split(" ");
-                        }
-                        // einde implementeren ingelezen gegevens doorgeven aan model
-                    } catch (IOException e) {
-                        //
-                    }
-                } else {
-                    Alert errorWindow = new Alert(Alert.AlertType.ERROR);
-                    errorWindow.setHeaderText("Problem with the selected input file:");
-                    errorWindow.setContentText("File is not readable");
-                    errorWindow.showAndWait();
-                }
-            }
-        });
-        *
-         */
-
-        /*
-        view.getSaveItem().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Save Data File");
-                fileChooser.getExtensionFilters().addAll(
-                        new FileChooser.ExtensionFilter("Textfiles", "*.txt"),
-                        new FileChooser.ExtensionFilter("All Files", "*.*"));
-                File selectedFile = fileChooser.showSaveDialog(view.getScene().getWindow());
-                if ((selectedFile != null) ^ (Files.isWritable(Paths.get(selectedFile.toURI())))) {
-                    try {
-                        Files.deleteIfExists(Paths.get(selectedFile.toURI()));
-                    } catch (IOException e) {
-                        //
-                    }
-                    try (Formatter output = new Formatter(selectedFile)) {
-                        // Begin implementeren wegschrijven model-gegevens
-                        output.format("%s%n", "Here comes the data!");
-                        output.format("%s%n", "First record");
-                        output.format("%s%n", "...");
-                        output.format("%s%n", "Last record");
-                        // Einde implementeren wegschrijven model-gegevens
-                    } catch (IOException e) {
-                        //
-                    }
-                } else {
-                    Alert errorWindow = new Alert(Alert.AlertType.ERROR);
-                    errorWindow.setHeaderText("Problem with the selected output file:");
-                    errorWindow.setContentText("File is not writable");
-                    errorWindow.showAndWait();
-                }
-            }
-        });
-         */
-
         view.getExitItem().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -235,26 +166,6 @@ public class MenuBarPresenter {
                 rulesScreenStage.showAndWait();
             }});
 
-        /*
-        view.getNewgameMI().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-                NewGameScreenView newGameView = new NewGameScreenView(uiSettings);
-                NewGameScreenPresenter newGameScreenPresenter = new NewGameScreenPresenter(newGameView,uiSettings,view.getScene());
-                Stage newGameStage = new Stage();
-                // set owner to window of this presenters view
-                newGameStage.initOwner(view.getScene().getWindow());
-                newGameStage.initModality(Modality.APPLICATION_MODAL);
-                newGameStage.setTitle(uiSettings.getApplicationName() + " - New game");
-                newGameStage.setScene(new Scene(newGameView));
-                newGameStage.setX(view.getScene().getWindow().getX()+50);
-                newGameStage.setY(view.getScene().getWindow().getY()+50);
-                newGameStage.showAndWait();
-
-            }
-        });
-         */
         view.getNewGameLabel().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -323,47 +234,19 @@ public class MenuBarPresenter {
             }
         });
 
-        /*
-        view.getMainMenuMI().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                MainMenuScreenView mmSv=new MainMenuScreenView();
-                view.getScene().setRoot(mmSv);
-                MainMenuScreenPresenter mmSp=new MainMenuScreenPresenter(new MVPModel(),mmSv,uiSettings);
-                try {
-                    mmSv.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
-                } catch (MalformedURLException ex) {
-                    // // do nothing, if toURL-conversion fails, program can continue
-                }
-//                mmSv.getScene().getWindow().sizeToScene();
-//                mmSv.getScene().getWindow().setX(uiSettings.getResX()/20);
-//                mmSv.getScene().getWindow().setY(uiSettings.getResY()/20);
-//                mmSv.getScene().getWindow().setHeight(5 * uiSettings.getResY()/10);
-//                mmSv.getScene().getWindow().setWidth(5 * uiSettings.getResX()/10);
-//                mmSp.windowsHandler();
-                //updateView();
-                mmSv.getScene().getWindow().centerOnScreen();
-                mmSp.windowsHandler();
-            }
-        });*/
         view.getMainMenuLabel().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 MainMenuScreenView mmSv=new MainMenuScreenView();
                 view.getScene().setRoot(mmSv);
                 MainMenuScreenPresenter mmSp=new MainMenuScreenPresenter(new MVPModel(),mmSv,uiSettings);
+                mmSv.getScene().getWindow().setHeight(uiSettings.getResY() / 2);
+                mmSv.getScene().getWindow().setWidth(uiSettings.getResX() / 2);
                 try {
                     mmSv.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
                 } catch (MalformedURLException ex) {
                     // // do nothing, if toURL-conversion fails, program can continue
                 }
-//                mmSv.getScene().getWindow().sizeToScene();
-//                mmSv.getScene().getWindow().setX(uiSettings.getResX()/20);
-//                mmSv.getScene().getWindow().setY(uiSettings.getResY()/20);
-//                mmSv.getScene().getWindow().setHeight(5 * uiSettings.getResY()/10);
-//                mmSv.getScene().getWindow().setWidth(5 * uiSettings.getResX()/10);
-//                mmSp.windowsHandler();
-                //updateView();
                 mmSv.getScene().getWindow().centerOnScreen();
                 mmSp.windowsHandler();
             }
@@ -376,7 +259,7 @@ public class MenuBarPresenter {
     private void handleCloseEvent(Event event){
         final Alert stopWindow = new Alert(Alert.AlertType.CONFIRMATION);
         stopWindow.setHeaderText("You're closing the game.");
-        stopWindow.setContentText("Are you sure? Unsaved data may be lost.");
+        stopWindow.setContentText("Are you sure?");
         stopWindow.setTitle("WARNING!");
         stopWindow.getButtonTypes().clear();
         ButtonType noButton = new ButtonType("No");

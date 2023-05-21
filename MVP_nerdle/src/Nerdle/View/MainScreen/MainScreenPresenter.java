@@ -167,7 +167,7 @@ public class MainScreenPresenter {
     private void handleCloseEvent(Event event){
         final Alert stopWindow = new Alert(Alert.AlertType.CONFIRMATION);
         stopWindow.setHeaderText("You're closing the game.");
-        stopWindow.setContentText("Are you sure? Unsaved data may be lost.");
+        stopWindow.setContentText("Are you sure?");
         stopWindow.setTitle("WARNING!");
         stopWindow.getButtonTypes().clear();
         ButtonType noButton = new ButtonType("No");

@@ -43,15 +43,17 @@ public class OverzichtView extends VBox {
     }
 
     private void layoutNodes() {
-
+        enterButton.setFitHeight(150);
+        enterButton.setFitWidth(150);
+        backSpaceButton.setFitHeight(150);
+        backSpaceButton.setFitWidth(150);
         operations.getChildren().add(enterButton);
         operations.getChildren().add(backSpaceButton);
-
         this.getChildren().addAll(numbers,operations);
-        setMargin(operations,new Insets(20));
-        setPadding(new Insets(20));
         numbers.setAlignment(Pos.CENTER);
         operations.setAlignment(Pos.CENTER);
+        setMargin(operations,new Insets(20));
+        setPadding(new Insets(30));
     }
 
     CharacterTile addNumber(EquationCharacter eqc){
