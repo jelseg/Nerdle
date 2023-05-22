@@ -151,8 +151,8 @@ public class MainMenuScreenPresenter {
                     }
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
-                settingsView.getScene().getWindow().setHeight(uiSettings.getResY()/2);
-                settingsView.getScene().getWindow().setWidth(uiSettings.getResX()/1.8);
+                settingsView.getScene().getWindow().setHeight(uiSettings.getResY()/5);
+                settingsView.getScene().getWindow().setWidth(uiSettings.getResX()/2);
                 if (uiSettings.styleSheetAvailable()) {
                     settingsStage.getScene().getStylesheets().removeAll();
                     try {
