@@ -2,6 +2,7 @@ package Nerdle.View.HighscoresScreen;
 
 import Nerdle.Model.Difficulty;
 import Nerdle.View.UISettings;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -50,6 +51,9 @@ public class HighscoresScreenView extends BorderPane {
     private void layoutNodes(){
         HBox hBox = new HBox(scoreTypeCombobox,difficultyComboBox);
         hBox.setMaxWidth(Double.MAX_VALUE);
+        hBox.setPadding(new Insets(5));
+        HBox.setMargin(scoreTypeCombobox,new Insets(5));
+        HBox.setMargin(difficultyComboBox,new Insets(5));
         setTop(hBox);
         setCenter(table);
     }

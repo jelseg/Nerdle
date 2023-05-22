@@ -202,7 +202,8 @@ public class User {
         }
 
         //calculate total score based on weighted scores per difficulty
-        totScore = 1*scores.get(Difficulty.NORMAL);
+        totScore = 1*scores.get(Difficulty.NORMAL) + 2*scores.get(Difficulty.HARD) + 2* scores.get(Difficulty.MODULUS) +
+                    scores.get(Difficulty.EASY)/2;
 
         //calculate average
         if(totGames == 0){

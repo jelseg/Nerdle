@@ -25,6 +25,8 @@ public class NewGameScreenView extends GridPane {
     private Button playButton;
     private Button createButton;
 
+    private Label warningTextLabel;
+
     public NewGameScreenView(UISettings uiSettings){
         this.uiSettings=uiSettings;
         initialiseNodes();
@@ -37,6 +39,8 @@ public class NewGameScreenView extends GridPane {
         newLabel =  new Label("New user?");
 
         difficultyLabel = new Label("Difficulty:");
+
+        warningTextLabel = new Label("");
 
         userBox = new ComboBox<>();
         difficultyComboBox = new ComboBox<>();
@@ -58,9 +62,10 @@ public class NewGameScreenView extends GridPane {
         this.add(chooseLabel,0,1);
         this.add(userBox,1,1);
         this.add(playButton,0,2,2,1);
-        this.add(newLabel,0,3);
-        this.add(username,1,3);
-        this.add(createButton,0,4,2,1);
+        this.add(warningTextLabel,0,3,2,1);
+        this.add(newLabel,0,4);
+        this.add(username,1,4);
+        this.add(createButton,0,5,2,1);
         setPrefWidth(uiSettings.getLowestRes() / 5);
         setPrefHeight(uiSettings.getLowestRes() / 5);
         setAlignment(Pos.CENTER);
@@ -103,4 +108,6 @@ public class NewGameScreenView extends GridPane {
     }
 
     ComboBox<Difficulty> getDifficultyComboBox(){return difficultyComboBox;}
+
+    Label getWarningTextLabel(){return warningTextLabel;}
 }

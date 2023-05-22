@@ -229,6 +229,11 @@ public class MainScreenPresenter {
                 gv.getElement(i, j).changeCharacter(curChars[j]);
                 //System.out.println(j + curChars[j].getOperation().toString());
             }
+        } else if (!model.isFoundIt()) {
+            //when you lose
+            view.getMessageLabel().setText(String.format("Sorry, maximum number of guesses has been reached. Try again " +
+                    "tomorrow.%nThe correct answer was %s",model.getAnswer().getCombinationString()));
+
         }
 
     }

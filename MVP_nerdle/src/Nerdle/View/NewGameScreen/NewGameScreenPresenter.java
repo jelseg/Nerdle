@@ -54,24 +54,38 @@ public class NewGameScreenPresenter {
 
         User userChoosen = new User(username);
         Difficulty difficulty = view.getDifficultyComboBox().getValue();
-        Nerdle nerdleModel = new Nerdle(userChoosen, difficulty);
-
-        MainScreenView mainScreenView=new MainScreenView(uiSettings,difficulty);
-        MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(nerdleModel,mainScreenView,uiSettings);
-
-        view.getScene().getWindow().hide();
-        mainScene.setRoot(mainScreenView);
         try {
-            mainScreenView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
-        } catch (MalformedURLException ex) {
-            //do nothing, if toURL-conversion fails, program can continue
+            Nerdle nerdleModel = new Nerdle(userChoosen, difficulty);
+            MainScreenView mainScreenView=new MainScreenView(uiSettings,difficulty);
+            MainScreenPresenter mainScreenPresenter=new MainScreenPresenter(nerdleModel,mainScreenView,uiSettings);
+
+            view.getScene().getWindow().hide();
+            mainScene.setRoot(mainScreenView);
+            try {
+                mainScreenView.getScene().getStylesheets().add(uiSettings.getStyleSheetPath().toUri().toURL().toString());
+            } catch (MalformedURLException ex) {
+                //do nothing, if toURL-conversion fails, program can continue
+            }
+            mainScreenView.getScene().getWindow().sizeToScene();
+            mainScreenView.getScene().getWindow().centerOnScreen();
+            mainScreenPresenter.windowsHandler();
+        }catch (NerdleException n) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Unable to load");
+            alert.setContentText(n.getMessage());
+            alert.showAndWait();
         }
-        mainScreenView.getScene().getWindow().sizeToScene();
-        mainScreenView.getScene().getWindow().centerOnScreen();
-        mainScreenPresenter.windowsHandler();
 
 
 
+    }
+
+    private boolean userAlreadyExists(String userName){
+        boolean foundUser = false;
+        for(User u: usersModel){
+            if (u.getName().equals(userName)) foundUser = true;
+        }
+        return foundUser;
     }
 
     private void addEventHandlers(){
@@ -90,14 +104,19 @@ public class NewGameScreenPresenter {
             }
         });
 
+
         view.getCreateButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
 
-                String userName = view.getUsername().getText();
+                String userName = view.getUsername().getText().trim();
                 System.out.println(userName);
 
-                if(userName != null && !userName.trim().isEmpty()){
+                if(userName.isEmpty()){
+                    view.getWarningTextLabel().setText("Please fill in a username.");
+                } else if (userAlreadyExists(userName)) {
+                    view.getWarningTextLabel().setText("Username has to be unique.");
+                } else {
                     startNewGame(userName);
                 }
 
