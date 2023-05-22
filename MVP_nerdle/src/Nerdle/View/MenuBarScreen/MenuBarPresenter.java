@@ -71,8 +71,8 @@ public class MenuBarPresenter {
                     }
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
-                settingsView.getScene().getWindow().setHeight(7 * uiSettings.getResY() / 10);
-                settingsView.getScene().getWindow().setWidth(7 * uiSettings.getResX() / 10);
+                settingsView.getScene().getWindow().setHeight(uiSettings.getResY()/5);
+                settingsView.getScene().getWindow().setWidth(uiSettings.getResX()/2);
                 if (uiSettings.styleSheetAvailable()) {
                     settingsStage.getScene().getStylesheets().removeAll();
                     try {
@@ -110,8 +110,8 @@ public class MenuBarPresenter {
                 Scene scene = new Scene(aboutScreenView);
                 aboutScreenStage.setScene(scene);
                 aboutScreenStage.setTitle(uiSettings.getApplicationName() + " - About");
-                aboutScreenStage.setX(view.getScene().getWindow().getWidth()+view.getScene().getWindow().getWidth()/10);
-                aboutScreenStage.setY( view.getScene().getWindow().getHeight()/4);
+                aboutScreenStage.setX(view.getScene().getWindow().getX() );
+                aboutScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 40);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         aboutScreenStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
@@ -141,8 +141,8 @@ public class MenuBarPresenter {
                 Scene scene = new Scene(rulesScreenView);
                 rulesScreenStage.setScene(scene);
                 rulesScreenStage.setTitle(uiSettings.getApplicationName()+ " - Rules");
-                rulesScreenStage.setX(view.getScene().getWindow().getWidth()-view.getScene().getWindow().getWidth()/6);
-                rulesScreenStage.setY( view.getScene().getWindow().getHeight()/3);
+                rulesScreenStage.setX(view.getScene().getWindow().getX() );
+                rulesScreenStage.setY(view.getScene().getWindow().getY() + uiSettings.getResY() / 40);
                 if (Files.exists(uiSettings.getApplicationIconPath())) {
                     try {
                         rulesScreenStage.getIcons().add(new Image(uiSettings.getApplicationIconPath().toUri().toURL().toString()));
@@ -153,7 +153,7 @@ public class MenuBarPresenter {
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
                 rulesScreenView.getScene().getWindow().setHeight(uiSettings.getResY()/2);
-                rulesScreenView.getScene().getWindow().setWidth(uiSettings.getResX()/2);
+                rulesScreenView.getScene().getWindow().setWidth(uiSettings.getResX()/3);
                 if (uiSettings.styleSheetAvailable()){
                     rulesScreenView.getScene().getStylesheets().removeAll();
                     try {
@@ -213,7 +213,7 @@ public class MenuBarPresenter {
                 } else { // do nothing, if ApplicationIconImage is not available, program can continue
                 }
                 highscoresScreenView.getScene().getWindow().setHeight(uiSettings.getResY() / 2);
-                highscoresScreenView.getScene().getWindow().setWidth(uiSettings.getResX() / 4);
+                highscoresScreenView.getScene().getWindow().setWidth(uiSettings.getResX() / 3);
                 if (uiSettings.styleSheetAvailable()) {
                     highscoreStage.getScene().getStylesheets().removeAll();
                     try {
