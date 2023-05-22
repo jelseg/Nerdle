@@ -24,17 +24,15 @@ public class MainScreenTransition {
 
     public void play() {
 
-        double targetWidth = view.getWidth() / 2;
         double targetHeight = view.getHeight() / 2;
-        double targetX = (view.getWidth() - targetWidth);
         double targetY = (view.getHeight() - targetHeight);
 
         imageView.setViewport(new Rectangle2D(0, 0, imageView.getImage().getWidth(), imageView.getImage().getHeight()));
-        imageView.setX(targetX/2);
+        imageView.setX(view.getWidth()/2-imageView.getImage().getWidth()/2);
         imageView.setY(targetY/8);
 
         congrats.setViewport(new Rectangle2D(0, 0, congrats.getImage().getWidth(), congrats.getImage().getHeight()));
-        congrats.setX(targetX/7);
+        congrats.setX(view.getWidth()/2-congrats.getImage().getWidth()/2);
         congrats.setLayoutY(-400);
 
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(5), congrats);

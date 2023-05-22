@@ -4,6 +4,7 @@ import Nerdle.Model.Difficulty;
 import Nerdle.View.MenuBarScreen.MenuBarPresenter;
 import Nerdle.View.MenuBarScreen.MenuBarView;
 import Nerdle.View.UISettings;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -33,6 +34,7 @@ public class MainScreenView extends BorderPane {
         this.menuBarView = new MenuBarView(uiSettings);
 
         this.messageLabel = new Label("");
+        messageLabel.setId("warninglabel");
 
 
     }
@@ -41,10 +43,13 @@ public class MainScreenView extends BorderPane {
 
 
         setTop(menuBarView);
-        setCenter(new VBox(messageLabel,guessesView));
+        VBox center=new VBox(messageLabel,guessesView);
+        setCenter(center);
         setBottom(overzichtView);
         guessesView.setAlignment(Pos.CENTER);
         overzichtView.setAlignment(Pos.CENTER);
+        center.setPadding(new Insets(5));
+        center.setAlignment(Pos.CENTER);
 
     }
 

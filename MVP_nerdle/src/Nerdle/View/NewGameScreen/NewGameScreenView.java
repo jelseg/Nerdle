@@ -3,6 +3,7 @@ package Nerdle.View.NewGameScreen;
 import Nerdle.Model.Difficulty;
 import Nerdle.View.UISettings;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
@@ -41,6 +42,7 @@ public class NewGameScreenView extends GridPane {
         difficultyLabel = new Label("Difficulty:");
 
         warningTextLabel = new Label("");
+        warningTextLabel.setId("warninglabel");
 
         userBox = new ComboBox<>();
         difficultyComboBox = new ComboBox<>();
@@ -85,6 +87,7 @@ public class NewGameScreenView extends GridPane {
         setValignment(username, VPos.CENTER);
         setHalignment(createButton, HPos.CENTER);
         setValignment(createButton, VPos.CENTER);
+        setHalignment(warningTextLabel,HPos.CENTER);
         setVgap(10);
     }
 

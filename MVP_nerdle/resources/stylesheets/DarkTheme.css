@@ -55,3 +55,11 @@
     -fx-font-size: 12px;
     -fx-font-family: "Calibri";
 }
+
+#warninglabel{
+    -fx-text-alignment: center;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e80202;
+    -fx-font-family: "Calibri";
+}

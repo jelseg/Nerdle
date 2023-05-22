@@ -43,9 +43,9 @@ public class OverzichtView extends VBox {
     }
 
     private void layoutNodes() {
-        enterButton.setFitHeight(150);
+        enterButton.setFitHeight(90);
         enterButton.setFitWidth(150);
-        backSpaceButton.setFitHeight(150);
+        backSpaceButton.setFitHeight(90);
         backSpaceButton.setFitWidth(150);
         operations.getChildren().add(enterButton);
         operations.getChildren().add(backSpaceButton);
