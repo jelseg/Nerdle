@@ -52,7 +52,7 @@ public class MainScreenPresenter {
 
     private void updateView() {
 
-        System.out.println(model.getCurrentGuess().getCombinationString());
+        //System.out.println(model.getCurrentGuess().getCombinationString());
 
         updateOverzicht();
         updateGuessesView();

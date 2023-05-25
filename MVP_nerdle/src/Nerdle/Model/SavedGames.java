@@ -16,7 +16,7 @@ import java.util.Map;
 class SavedGames {
 
     static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyyMMdd");
-    static final String saveGamesFolder = System.getProperty("user.home") + File.separator + "kdg-Nerdle";
+    static final String saveGamesFolder = System.getProperty("user.dir") + File.separator + "kdg-Nerdle";
 
     private String saveGamesFile = saveGamesFolder + File.separator + "savedGames.txt";
 
@@ -54,7 +54,7 @@ class SavedGames {
                 String line = reader.readLine();
                 //check if it is today's file, if it is read the file, else there hasn't been a game saved today
                 if(line.equals(LocalDate.now().format(DATE_FORMAT))){
-                    System.out.println("savedGames file is today's");
+                    //System.out.println("savedGames file is today's");
                     hasToCreateNewFile = false;
                     while ((line = reader.readLine()) != null){
                         //expects user,difficulty,guesses(; seperated)
@@ -105,7 +105,7 @@ class SavedGames {
             if(builder.length() > 0){
                 builder.deleteCharAt(builder.length() - 1);
             }
-            System.out.println(builder.toString());
+            //System.out.println(builder.toString());
             writer.write(builder.toString());
             writer.newLine();
 
